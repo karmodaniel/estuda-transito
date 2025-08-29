@@ -1,0 +1,210 @@
+<div class="quiz-page">
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading-container">
+    <nz-spin nzSize="large">
+      <span class="loading-text">Carregando placas...</span>
+    </nz-spin>
+  </div>
+
+  <!-- Tela inicial -->
+  <div *ngIf="!loading && !quizIniciado && !quizFinalizado" class="quiz-inicial">
+    <nz-card class="quiz-card">
+      <div class="quiz-header">
+        <div class="quiz-icon">🎯</div>
+        <h1>Quiz de Placas de Trânsito</h1>
+        <p>Teste seus conhecimentos sobre placas de trânsito brasileiras!</p>
+      </div>
+      
+      <div class="quiz-info">
+        <nz-descriptions nzTitle="Informações do Quiz" [nzColumn]="1">
+          <nz-descriptions-item nzTitle="Total de questões">
+            {{ totalQuestoes }} questões
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Tipo de questão">
+            Múltipla escolha (4 opções)
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Tempo">
+            Sem limite de tempo
+          </nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Feedback">
+            Resposta imediata após cada questão
+          </nz-descriptions-item>
+        </nz-descriptions>
+      </div>
+      
+      <div class="quiz-actions">
+        <button 
+          nz-button 
+          nzType="primary" 
+          nzSize="large"
+          (click)="iniciarQuiz()"
+          class="start-btn"
+        >
+          <span nz-icon nzType="play-circle"></span>
+          Iniciar Quiz
+        </button>
+      </div>
+    </nz-card>
+  </div>
+
+  <!-- Quiz em andamento -->
+  <div *ngIf="!loading && quizIniciado && !quizFinalizado" class="quiz-ativo">
+    <nz-card class="quiz-card">
+      <!-- Barra de progresso -->
+      <div class="progress-section">
+        <div class="progress-info">
+          <span class="questao-atual">Questão {{ questaoAtual + 1 }} de {{ questoes.length }}</span>
+          <span class="pontuacao">Pontuação: {{ pontuacao }}</span>
+        </div>
+        <nz-progress 
+          [nzPercent]="getProgresso()" 
+          [nzShowInfo]="false"
+          nzStrokeColor="#1890ff"
+        ></nz-progress>
+      </div>
+
+      <!-- Questão atual -->
+      <div *ngIf="getQuestaoAtual()" class="questao-section">
+        <div class="questao-header">
+          <h2>Qual é o nome desta placa de trânsito?</h2>
+        </div>
+        
+        <!-- Imagem da placa -->
+        <div class="placa-imagem">
+          <img 
+            [src]="getQuestaoAtual()!.placa.imagem_url" 
+            [alt]="getQuestaoAtual()!.placa.nome"
+            (error)="onImageError($event)"
+            class="placa-img"
+          />
+        </div>
+        
+        <!-- Opções de resposta -->
+        <div class="opcoes-resposta">
+          <div 
+            *ngFor="let opcao of getQuestaoAtual()!.opcoes; let i = index"
+            class="opcao-item"
+            [class.selecionada]="getQuestaoAtual()!.respostaSelecionada === opcao"
+            [class.correta]="getQuestaoAtual()!.respondida && opcao === getQuestaoAtual()!.respostaCorreta"
+            [class.incorreta]="getQuestaoAtual()!.respondida && getQuestaoAtual()!.respostaSelecionada === opcao && opcao !== getQuestaoAtual()!.respostaCorreta"
+            (click)="selecionarResposta(getQuestaoAtual()!, opcao)"
+          >
+            <div class="opcao-radio">
+              <nz-radio 
+                [nzValue]="opcao"
+                [nzDisabled]="getQuestaoAtual()!.respondida"
+                [ngModel]="getQuestaoAtual()!.respostaSelecionada"
+              ></nz-radio>
+            </div>
+            <div class="opcao-texto">
+              {{ opcao }}
+            </div>
+            <div class="opcao-status" *ngIf="getQuestaoAtual()!.respondida">
+              <span 
+                *ngIf="opcao === getQuestaoAtual()!.respostaCorreta" 
+                nz-icon 
+                nzType="check-circle" 
+                nzTheme="twotone" 
+                nzTwotoneColor="#52c41a"
+                class="status-icon correto"
+              ></span>
+              <span 
+                *ngIf="getQuestaoAtual()!.respostaSelecionada === opcao && opcao !== getQuestaoAtual()!.respostaCorreta" 
+                nz-icon 
+                nzType="close-circle" 
+                nzTheme="twotone" 
+                nzTwotoneColor="#ff4d4f"
+                class="status-icon incorreto"
+              ></span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feedback da resposta -->
+        <div *ngIf="getQuestaoAtual()!.respondida" class="feedback-resposta">
+          <nz-alert
+            [nzType]="getQuestaoAtual()!.acertou ? 'success' : 'error'"
+            [nzMessage]="getQuestaoAtual()!.acertou ? 'Parabéns! Resposta correta!' : 'Ops! Resposta incorreta.'"
+            [nzDescription]="'Resposta correta: ' + getQuestaoAtual()!.respostaCorreta"
+            class="feedback-alert"
+          ></nz-alert>
+        </div>
+        
+        <!-- Navegação -->
+        <div class="navegacao-questoes">
+          <button 
+            nz-button 
+            nzType="default"
+            (click)="questaoAnterior()"
+            [disabled]="questaoAtual === 0"
+          >
+            <span nz-icon nzType="left"></span>
+            Anterior
+          </button>
+          
+          <button 
+            nz-button 
+            nzType="primary"
+            (click)="proximaQuestao()"
+            [disabled]="!getQuestaoAtual()!.respondida"
+          >
+            <span *ngIf="questaoAtual < questoes.length - 1; else finalizar">
+              Próxima
+              <span nz-icon nzType="right"></span>
+            </span>
+            <ng-template #finalizar>
+              Finalizar Quiz
+              <span nz-icon nzType="check"></span>
+            </ng-template>
+          </button>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+
+  <!-- Resultado final -->
+  <div *ngIf="!loading && quizFinalizado" class="quiz-resultado">
+    <nz-card class="quiz-card">
+      <div class="resultado-header">
+        <div class="resultado-icon">
+          <span *ngIf="pontuacao >= questoes.length * 0.7" nz-icon nzType="trophy" nzTheme="twotone" nzTwotoneColor="#faad14"></span>
+          <span *ngIf="pontuacao < questoes.length * 0.7" nz-icon nzType="star" nzTheme="twotone" nzTwotoneColor="#1890ff"></span>
+        </div>
+        <h1>Quiz Finalizado!</h1>
+        <p>Sua pontuação final</p>
+      </div>
+      
+      <div class="resultado-pontuacao">
+        <div class="pontuacao-numerica">
+          <span class="pontos">{{ pontuacao }}</span>
+          <span class="total">/ {{ questoes.length }}</span>
+        </div>
+        <div class="pontuacao-percentual">
+          {{ (pontuacao / questoes.length * 100).toFixed(0) }}%
+        </div>
+      </div>
+      
+      <div class="resultado-mensagem">
+        <nz-alert
+          [nzType]="pontuacao >= questoes.length * 0.7 ? 'success' : 'warning'"
+          [nzMessage]="pontuacao >= questoes.length * 0.7 ? 'Excelente! Você tem um bom conhecimento sobre placas de trânsito!' : 'Continue estudando! Você pode melhorar!'"
+          class="resultado-alert"
+        ></nz-alert>
+      </div>
+      
+      <div class="resultado-acoes">
+        <button 
+          nz-button 
+          nzType="primary" 
+          nzSize="large"
+          (click)="reiniciarQuiz()"
+          class="restart-btn"
+        >
+          <span nz-icon nzType="reload"></span>
+          Fazer Novamente
+        </button>
+      </div>
+    </nz-card>
+  </div>
+</div>
+

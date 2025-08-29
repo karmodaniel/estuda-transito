@@ -1,0 +1,331 @@
+<div class="quiz-container">
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading-container">
+    <nz-spin nzSize="large">
+      <span class="loading-text">Carregando placas...</span>
+    </nz-spin>
+  </div>
+
+  <!-- Tela inicial -->
+  <div
+    *ngIf="!loading && !quizIniciado && !quizFinalizado"
+    class="quiz-welcome"
+  >
+    <nz-card class="welcome-card">
+      <div class="welcome-content">
+        <div class="welcome-icon">
+          <span nz-icon nzType="question-circle" nzTheme="outline"></span>
+        </div>
+
+        <h1>Quiz de Placas de Trânsito</h1>
+        <p>Teste seus conhecimentos sobre placas de trânsito brasileiras!</p>
+
+        <!-- Configurações do quiz -->
+        <div class="quiz-config">
+          <h3>Configurações:</h3>
+
+          <!-- Seleção de categoria -->
+          <div class="config-section">
+            <h4>Categoria:</h4>
+            <nz-radio-group
+              [(ngModel)]="configQuiz.categoriaSelecionada"
+              (ngModelChange)="alterarCategoria($event)"
+            >
+              <label nz-radio-button nzValue=""> Todas as Categorias </label>
+              <label
+                *ngFor="let cat of configQuiz.categorias"
+                nz-radio-button
+                [nzValue]="cat"
+                [style.border-color]="getCategoriaColor(cat)"
+              >
+                {{ getNomeCategoria(cat) }}
+              </label>
+            </nz-radio-group>
+          </div>
+
+          <!-- Número de opções -->
+          <div class="config-section">
+            <h4>Número de Opções:</h4>
+            <nz-radio-group [(ngModel)]="configQuiz.numOpcoes">
+              <label nz-radio-button nzValue="3">3 Opções</label>
+              <label nz-radio-button nzValue="4">4 Opções</label>
+              <label nz-radio-button nzValue="5">5 Opções</label>
+            </nz-radio-group>
+          </div>
+        </div>
+
+        <!-- Botão iniciar -->
+        <div class="start-button">
+          <button
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            (click)="iniciarQuiz()"
+            [disabled]="!placas.length"
+          >
+            <span nz-icon nzType="play-circle" nzTheme="outline"></span>
+            Iniciar Quiz
+          </button>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+
+  <!-- Quiz em andamento -->
+  <div
+    *ngIf="quizIniciado && !quizFinalizado && questaoAtual"
+    class="quiz-active"
+  >
+    <!-- Cabeçalho do quiz -->
+    <nz-card class="quiz-header">
+      <div class="quiz-progress">
+        <nz-progress
+          [nzPercent]="
+            ((placasUsadas.length - 1) /
+              (placasUsadas.length + placasDisponiveis.length - 1)) *
+            100
+          "
+          [nzShowInfo]="false"
+          nzStrokeColor="#1890ff"
+        ></nz-progress>
+        <div class="progress-text">
+          Questão {{ totalQuestoes }} de
+          {{ placasUsadas.length + placasDisponiveis.length }}
+        </div>
+      </div>
+
+      <!-- Estatísticas em tempo real -->
+      <div class="quiz-stats">
+        <div class="stat-item">
+          <span class="stat-label">Acertos:</span>
+          <span class="stat-value correct">{{ acertos }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Erros:</span>
+          <span class="stat-value incorrect">{{
+            totalQuestoes - acertos
+          }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Precisão:</span>
+          <span class="stat-value"
+            >{{
+              totalQuestoes > 0
+                ? ((acertos / totalQuestoes) * 100).toFixed(1)
+                : 0
+            }}%</span
+          >
+        </div>
+      </div>
+    </nz-card>
+
+    <!-- Questão atual -->
+    <nz-card class="question-card">
+      <div class="question-content">
+        <!-- Imagem da placa -->
+        <div class="placa-image">
+          <img
+            [src]="questaoAtual.imagem_url"
+            [alt]="questaoAtual.nome"
+            (error)="onImageError($event)"
+            class="placa-img"
+          />
+        </div>
+
+        <!-- Pergunta -->
+        <div class="question-text">
+          <h2>Qual é o nome desta placa?</h2>
+          <p class="question-hint">
+            Selecione a resposta correta entre as opções abaixo:
+          </p>
+        </div>
+
+        <!-- Opções de resposta -->
+        <div class="answer-options">
+          <div
+            *ngFor="let opcao of opcoes; let i = index"
+            class="answer-option"
+            [ngClass]="{
+              selected: respostaSelecionada === opcao,
+              correct: respostaRevelada && opcao === respostaCorreta,
+              incorrect:
+                respostaRevelada &&
+                respostaSelecionada === opcao &&
+                opcao !== respostaCorreta
+            }"
+            (click)="selecionarResposta(opcao)"
+          >
+            <div class="option-letter">{{ getOptionLetter(i) }}</div>
+            <div class="option-text">{{ opcao }}</div>
+            <div class="option-status">
+              <span
+                *ngIf="respostaRevelada && opcao === respostaCorreta"
+                nz-icon
+                nzType="check-circle"
+                nzTheme="fill"
+                class="status-correct"
+              ></span>
+              <span
+                *ngIf="
+                  respostaRevelada &&
+                  respostaSelecionada === opcao &&
+                  opcao !== respostaCorreta
+                "
+                nz-icon
+                nzType="close-circle"
+                nzTheme="fill"
+                class="status-incorrect"
+              ></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="action-buttons">
+          <button
+            *ngIf="!respostaRevelada"
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            (click)="verificarResposta()"
+            [disabled]="!respostaSelecionada"
+          >
+            <span nz-icon nzType="check"></span>
+            Verificar Resposta
+          </button>
+
+          <button
+            *ngIf="respostaRevelada"
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            (click)="proximaQuestao()"
+          >
+            <span nz-icon nzType="arrow-right"></span>
+            Próxima Questão
+          </button>
+        </div>
+
+        <!-- Resultado da resposta -->
+        <div *ngIf="respostaRevelada" class="answer-result">
+          <nz-result
+            [nzStatus]="
+              respostaSelecionada === respostaCorreta ? 'success' : 'error'
+            "
+            [nzTitle]="
+              respostaSelecionada === respostaCorreta
+                ? 'Parabéns! Resposta correta!'
+                : 'Ops! Resposta incorreta.'
+            "
+            [nzSubTitle]="
+              respostaSelecionada === respostaCorreta
+                ? 'Você acertou!'
+                : 'A resposta correta é: ' + respostaCorreta
+            "
+          >
+            <div class="result-details">
+              <p><strong>Código:</strong> {{ questaoAtual.codigo }}</p>
+              <p><strong>Descrição:</strong> {{ questaoAtual.descricao }}</p>
+              <p>
+                <strong>Categoria:</strong>
+                <nz-tag [nzColor]="getCategoriaColor(questaoAtual.categoria)">
+                  {{ getNomeCategoria(questaoAtual.categoria) }}
+                </nz-tag>
+              </p>
+            </div>
+          </nz-result>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+
+  <!-- Quiz finalizado -->
+  <div *ngIf="quizFinalizado" class="quiz-finished">
+    <nz-card class="results-card">
+      <nz-result
+        nzStatus="success"
+        nzTitle="Quiz Concluído!"
+        [nzSubTitle]="
+          'Você completou o quiz com ' +
+          acertos +
+          ' acertos em ' +
+          totalQuestoes +
+          ' questões.'
+        "
+      >
+        <div class="final-stats">
+          <h3>Estatísticas Finais:</h3>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">{{ acertos }}</div>
+              <div class="stat-label">Acertos</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-number">{{ totalQuestoes - acertos }}</div>
+              <div class="stat-label">Erros</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-number">
+                {{
+                  totalQuestoes > 0
+                    ? ((acertos / totalQuestoes) * 100).toFixed(1)
+                    : 0
+                }}%
+              </div>
+              <div class="stat-label">Precisão</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-number">{{ estatisticas.melhorSequencia }}</div>
+              <div class="stat-label">Melhor Sequência</div>
+            </div>
+          </div>
+
+          <div class="performance-message">
+            <p *ngIf="acertos / totalQuestoes >= 0.8" class="excellent">
+              🎉 Excelente! Você demonstrou um conhecimento excepcional sobre
+              placas de trânsito!
+            </p>
+            <p
+              *ngIf="
+                acertos / totalQuestoes >= 0.6 && acertos / totalQuestoes < 0.8
+              "
+              class="good"
+            >
+              👍 Bom trabalho! Você tem um bom conhecimento sobre placas de
+              trânsito.
+            </p>
+            <p *ngIf="acertos / totalQuestoes < 0.6" class="needs-improvement">
+              📚 Continue estudando! A prática leva à perfeição.
+            </p>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            (click)="reiniciarQuiz()"
+          >
+            <span nz-icon nzType="reload"></span>
+            Fazer Novo Quiz
+          </button>
+
+          <button
+            nz-button
+            nzType="default"
+            nzSize="large"
+            routerLink="/placas"
+          >
+            <span nz-icon nzType="book"></span>
+            Estudar Placas
+          </button>
+        </div>
+      </nz-result>
+    </nz-card>
+  </div>
+</div>
