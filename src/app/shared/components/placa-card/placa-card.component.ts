@@ -1,0 +1,60 @@
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Placa, PlacaVisualizacao } from '../../interfaces/placa.interface';
+import { UtilitiesService } from '../../services/utilities.service';
+
+@Component({
+  selector: 'app-placa-card',
+  templateUrl: './placa-card.component.html',
+  styleUrls: ['./placa-card.component.less'],
+})
+export class PlacaCardComponent {
+  @Input() placa!: Placa;
+  @Input() visualizacao!: PlacaVisualizacao;
+  @Input() tamanhoImagem: 'small' | 'medium' | 'large' = 'medium';
+  @Input() modoVisualizacao: 'grid' | 'lista' | 'cards' = 'grid';
+
+  @Output() placaClick = new EventEmitter<Placa>();
+
+  constructor(private utilitiesService: UtilitiesService) {}
+
+  onPlacaClick(): void {
+    this.placaClick.emit(this.placa);
+  }
+
+  onImageError(event: any): void {
+    this.utilitiesService.onImageError(event);
+  }
+
+  getCategoriaColor(categoria: string): string {
+    return this.utilitiesService.getCategoriaColor(categoria);
+  }
+
+  getImagemClass(): string {
+    switch (this.tamanhoImagem) {
+      case 'small':
+        return 'placa-img-small';
+      case 'large':
+        return 'placa-img-large';
+      default:
+        return 'placa-img-medium';
+    }
+  }
+
+  getCardClass(): string {
+    return `placa-card placa-card-${this.modoVisualizacao}`;
+  }
+
+  getNomeCategoria(codigo: string): string {
+    if (!codigo || codigo.trim() === '') {
+      return 'Não categorizada';
+    }
+    
+    const categorias: { [key: string]: string } = {
+      R: 'Regulamentação',
+      A: 'Advertência',
+      I: 'Indicação',
+      S: 'Serviços',
+    };
+    return categorias[codigo] || 'Desconhecida';
+  }
+}

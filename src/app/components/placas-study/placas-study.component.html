@@ -1,0 +1,188 @@
+<div class="placas-study-container">
+  <!-- Painel de configurações -->
+  <nz-card class="config-panel" [nzTitle]="configTitle">
+    <ng-template #configTitle>
+      <span nz-icon nzType="setting" nzTheme="outline"></span>
+      Configurações de Visualização
+    </ng-template>
+
+    <div class="config-content">
+      <!-- Controles de layout -->
+      <div class="layout-controls">
+        <h4>Layout:</h4>
+        <nz-radio-group
+          [(ngModel)]="layoutConfig.modoVisualizacao"
+          (ngModelChange)="alterarModoVisualizacao($event)"
+        >
+          <label nz-radio-button nzValue="grid">
+            <span nz-icon nzType="appstore" nzTheme="outline"></span>
+            Grid
+          </label>
+          <label nz-radio-button nzValue="lista">
+            <span nz-icon nzType="bars" nzTheme="outline"></span>
+            Lista
+          </label>
+          <label nz-radio-button nzValue="cards">
+            <span nz-icon nzType="credit-card" nzTheme="outline"></span>
+            Cards
+          </label>
+        </nz-radio-group>
+      </div>
+
+      <!-- Tamanho da imagem -->
+      <div class="image-size-controls">
+        <h4>Tamanho da Imagem:</h4>
+        <nz-radio-group
+          [(ngModel)]="layoutConfig.tamanhoImagem"
+          (ngModelChange)="alterarTamanhoImagem($event)"
+        >
+          <label nz-radio-button nzValue="small">Pequena</label>
+          <label nz-radio-button nzValue="medium">Média</label>
+          <label nz-radio-button nzValue="large">Grande</label>
+        </nz-radio-group>
+      </div>
+
+      <!-- Opções de visualização -->
+      <div class="visibility-controls">
+        <h4>Elementos Visíveis:</h4>
+        <div class="checkbox-group">
+          <label nz-checkbox [(ngModel)]="opcoesVisualizacao.mostrarCodigo">
+            Código
+          </label>
+          <label nz-checkbox [(ngModel)]="opcoesVisualizacao.mostrarNome">
+            Nome
+          </label>
+          <label nz-checkbox [(ngModel)]="opcoesVisualizacao.mostrarDescricao">
+            Descrição
+          </label>
+          <label nz-checkbox [(ngModel)]="opcoesVisualizacao.mostrarCategoria">
+            Categoria
+          </label>
+          <label nz-checkbox [(ngModel)]="opcoesVisualizacao.mostrarImagem">
+            Imagem
+          </label>
+        </div>
+      </div>
+
+      <!-- Botão para mostrar/ocultar filtros -->
+      <div class="filter-toggle">
+        <nz-switch
+          [(ngModel)]="layoutConfig.mostrarFiltros"
+          (ngModelChange)="toggleFiltros()"
+          nzCheckedChildren="Filtros Visíveis"
+          nzUnCheckedChildren="Filtros Ocultos"
+        ></nz-switch>
+      </div>
+    </div>
+  </nz-card>
+
+  <!-- Filtros (condicional) -->
+  <div *ngIf="layoutConfig.mostrarFiltros" class="filtros-section">
+    <nz-card nzTitle="Filtros" class="filtros-card">
+      <div class="filtros-content">
+        <!-- Pesquisa -->
+        <div class="pesquisa-section">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input
+              nz-input
+              placeholder="Pesquisar placas..."
+              [(ngModel)]="filtros.termoPesquisa"
+              (input)="pesquisar(filtros.termoPesquisa || '')"
+            />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+
+        <!-- Categorias -->
+        <div class="categorias-section">
+          <h4>Categorias:</h4>
+          <div class="categoria-buttons">
+            <button
+              nz-button
+              [nzType]="!filtros.categoria ? 'primary' : 'default'"
+              (click)="filtrarPorCategoria('')"
+              class="categoria-btn"
+            >
+              Todas
+            </button>
+            <button
+              *ngFor="let categoria of categorias"
+              nz-button
+              [nzType]="filtros.categoria === categoria ? 'primary' : 'default'"
+              (click)="filtrarPorCategoria(categoria)"
+              class="categoria-btn"
+            >
+              {{ getNomeCategoria(categoria) }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Limpar filtros -->
+        <div class="limpar-filtros">
+          <button
+            nz-button
+            nzType="default"
+            (click)="limparFiltros()"
+            [disabled]="!filtros.categoria && !filtros.termoPesquisa"
+          >
+            <span nz-icon nzType="clear"></span>
+            Limpar Filtros
+          </button>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+
+  <!-- Estatísticas -->
+  <nz-card class="stats-card">
+    <div class="stats-content">
+      <div class="stat-item">
+        <span class="stat-number">{{ getEstatisticas().total }}</span>
+        <span class="stat-label">Total de Placas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{ getEstatisticas().filtradas }}</span>
+        <span class="stat-label">Placas Filtradas</span>
+      </div>
+      <div class="stat-item" *ngFor="let cat of categorias">
+        <span class="stat-number">{{ getEstatisticas().categorias[cat] }}</span>
+        <span class="stat-label">{{ getNomeCategoria(cat) }}</span>
+      </div>
+    </div>
+  </nz-card>
+
+  <!-- Lista de placas -->
+  <nz-card [nzTitle]="'Placas encontradas: ' + placasFiltradas.length">
+    <!-- Loading -->
+    <div *ngIf="loading" class="loading-container">
+      <nz-spin nzSize="large">
+        <span class="loading-text">Carregando placas...</span>
+      </nz-spin>
+    </div>
+
+    <!-- Grid de placas usando componente reutilizável -->
+    <div *ngIf="!loading" [ngClass]="getGridClass()">
+      <app-placa-card
+        *ngFor="let placa of placasFiltradas"
+        [placa]="placa"
+        [visualizacao]="opcoesVisualizacao"
+        [tamanhoImagem]="layoutConfig.tamanhoImagem"
+        [modoVisualizacao]="layoutConfig.modoVisualizacao"
+        (placaClick)="onPlacaClick($event)"
+      ></app-placa-card>
+    </div>
+
+    <!-- Mensagem quando não há resultados -->
+    <div *ngIf="!loading && placasFiltradas.length === 0" class="no-results">
+      <nz-empty
+        nzNotFoundImage="simple"
+        [nzNotFoundContent]="
+          'Nenhuma placa encontrada com os filtros aplicados.'
+        "
+      >
+      </nz-empty>
+    </div>
+  </nz-card>
+</div>

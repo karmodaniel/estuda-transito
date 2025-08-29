@@ -1,0 +1,34 @@
+<div [ngClass]="getCardClass()" (click)="onPlacaClick()">
+  <div class="placa-content">
+    <!-- Imagem da placa -->
+    <div *ngIf="visualizacao.mostrarImagem" class="placa-imagem">
+      <img
+        [src]="placa.imagem_url"
+        [alt]="placa.nome"
+        (error)="onImageError($event)"
+        [ngClass]="getImagemClass()"
+      />
+    </div>
+
+    <!-- Informações da placa -->
+    <div class="placa-info">
+      <h3 *ngIf="visualizacao.mostrarNome" class="placa-nome">
+        {{
+          visualizacao.mostrarCodigo
+            ? placa.codigo + " - " + placa.nome
+            : placa.nome
+        }}
+      </h3>
+
+      <p *ngIf="visualizacao.mostrarDescricao" class="placa-descricao">
+        {{ placa.descricao }}
+      </p>
+
+      <div *ngIf="visualizacao.mostrarCategoria" class="placa-categoria">
+        <nz-tag [nzColor]="getCategoriaColor(placa.categoria)">
+          {{ getNomeCategoria(placa.categoria) }}
+        </nz-tag>
+      </div>
+    </div>
+  </div>
+</div>
