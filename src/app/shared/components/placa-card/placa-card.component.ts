@@ -1,4 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 import { Placa, PlacaVisualizacao } from '../../interfaces/placa.interface';
 import { UtilitiesService } from '../../services/utilities.service';
 
@@ -6,6 +8,8 @@ import { UtilitiesService } from '../../services/utilities.service';
   selector: 'app-placa-card',
   templateUrl: './placa-card.component.html',
   styleUrls: ['./placa-card.component.less'],
+  standalone: true,
+  imports: [CommonModule, NzTagModule],
 })
 export class PlacaCardComponent {
   @Input() placa!: Placa;
@@ -48,7 +52,7 @@ export class PlacaCardComponent {
     if (!codigo || codigo.trim() === '') {
       return 'Não categorizada';
     }
-    
+
     const categorias: { [key: string]: string } = {
       R: 'Regulamentação',
       A: 'Advertência',

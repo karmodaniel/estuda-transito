@@ -1,5 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { PlacasService } from '../../services/placas.service';
+import { PlacaCardComponent } from '../../shared/components/placa-card/placa-card.component';
 import {
   Placa,
   PlacaFiltros,
@@ -11,6 +23,21 @@ import {
   selector: 'app-placas-study',
   templateUrl: './placas-study.component.html',
   styleUrls: ['./placas-study.component.less'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    NzCardModule,
+    NzIconModule,
+    NzRadioModule,
+    NzCheckboxModule,
+    NzSwitchModule,
+    NzInputModule,
+    NzButtonModule,
+    NzSpinModule,
+    NzEmptyModule,
+    PlacaCardComponent
+  ]
 })
 export class PlacasStudyComponent implements OnInit {
   placas: Placa[] = [];

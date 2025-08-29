@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 import { PlacasService } from '../../services/placas.service';
 import { Placa } from '../../shared/interfaces/placa.interface';
 
@@ -6,6 +17,20 @@ import { Placa } from '../../shared/interfaces/placa.interface';
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.less'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    NzCardModule,
+    NzIconModule,
+    NzRadioModule,
+    NzButtonModule,
+    NzSpinModule,
+    NzProgressModule,
+    NzResultModule,
+    NzTagModule
+  ]
 })
 export class QuizComponent implements OnInit {
   placas: Placa[] = [];

@@ -1,12 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { ThemeService, Theme } from './shared/services/theme.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    NzLayoutModule,
+    NzButtonModule,
+    NzIconModule,
+    NzToolTipModule,
+  ],
 })
 export class AppComponent implements OnInit {
   isCollapsed = false;
@@ -50,7 +65,12 @@ export class AppComponent implements OnInit {
   }
 
   toggleTheme(): void {
+    console.log('🔄 Toggle theme chamado. Tema atual:', this.currentTheme);
     this.themeService.toggleTheme();
+    console.log(
+      '✅ Toggle theme executado. Novo tema:',
+      this.themeService.getCurrentTheme()
+    );
   }
 
   getThemeIcon(): string {

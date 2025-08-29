@@ -44,9 +44,40 @@
 @border: #e5e7eb;
 @focus-ring: #8257e5;
 
+/* Superfícies (Dark) */
+@bg-dark: #121214;
+@surface-1-dark: #1c1c20;
+@surface-2-dark: #2a2a32;
+@text-1-dark: #eaeaf2;
+@text-2-dark: #b8bdcb;
+@border-dark: #2a2a32;
+
 /* Gradiente hero */
 @hero-from: #8257e5;
 @hero-to: #04d361;
+
+/* ===== VARIÁVEIS CSS PARA THEMES ===== */
+:root {
+  /* Light Theme (padrão) */
+  --bg: @bg;
+  --surface-1: @surface-1;
+  --surface-2: @surface-2;
+  --text-1: @text-1;
+  --text-2: @text-2;
+  --border: @border;
+  --brand-500: @brand-500;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme */
+  --bg: @bg-dark;
+  --surface-1: @surface-1-dark;
+  --surface-2: @surface-2-dark;
+  --text-1: @text-1-dark;
+  --text-2: @text-2-dark;
+  --border: @border-dark;
+  --brand-500: @brand-500;
+}
 
 /* ===== NG-ZORRO OVERRIDES ===== */
 
@@ -208,6 +239,46 @@
 .ant-tag {
   border-radius: 0.375rem; /* 6px */
   font-weight: 500;
+}
+
+/* ===== DARK THEME OVERRIDES ===== */
+[data-theme="dark"] {
+  .ant-btn-ghost {
+    color: @text-1-dark;
+    border-color: @border-dark;
+
+    &:hover {
+      border-color: @brand-500;
+      color: @brand-500;
+    }
+  }
+
+  .ant-input,
+  .ant-select-selector,
+  .ant-picker {
+    background: @surface-1-dark;
+    border-color: @border-dark;
+    color: @text-1-dark;
+
+    &::placeholder {
+      color: @text-2-dark;
+    }
+  }
+
+  .ant-card {
+    background: @surface-1-dark;
+    border-color: @border-dark;
+  }
+
+  .ant-layout-header {
+    background: @surface-2-dark;
+    border-bottom-color: @border-dark;
+  }
+
+  .ant-layout-sider {
+    background: @surface-2-dark;
+    border-right-color: @border-dark;
+  }
 }
 
 /* ===== UTILITÁRIOS ===== */

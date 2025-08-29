@@ -1,10 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { PlacasService, Placa } from '../../services/placas.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { PlacasService } from '../../services/placas.service';
+import { Placa } from '../../shared/interfaces/placa.interface';
 
 @Component({
   selector: 'app-placas-page',
   templateUrl: './placas-page.component.html',
   styleUrls: ['./placas-page.component.less'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    NzCardModule,
+    NzCheckboxModule,
+    NzInputModule,
+    NzIconModule,
+    NzButtonModule,
+    NzSpinModule,
+    NzTagModule,
+    NzEmptyModule
+  ]
 })
 export class PlacasPageComponent implements OnInit {
   placas: Placa[] = [];
