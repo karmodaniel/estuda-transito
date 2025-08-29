@@ -1,0 +1,164 @@
+.placas-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Filtros */
+.filtros-section {
+  margin-bottom: 32px;
+}
+
+.filtros-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filtros-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pesquisa-section {
+  max-width: 400px;
+}
+
+.categorias-section h4 {
+  margin-bottom: 16px;
+  color: #262626;
+  font-weight: 600;
+}
+
+.categoria-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.categoria-btn {
+  min-width: 120px;
+}
+
+.limpar-filtros {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Lista de placas */
+.placas-section {
+  margin-bottom: 32px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px;
+}
+
+.loading-text {
+  margin-left: 16px;
+  color: #595959;
+}
+
+.placas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.placa-card {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.placa-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.placa-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.placa-imagem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 6px;
+  padding: 16px;
+  min-height: 120px;
+}
+
+.placa-img {
+  max-width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.placa-info {
+  flex: 1;
+}
+
+.placa-descricao {
+  color: #595959;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.placa-categoria {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.no-results {
+  padding: 48px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .placas-container {
+    padding: 16px;
+  }
+
+  .placas-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .categoria-buttons {
+    flex-direction: column;
+  }
+
+  .categoria-btn {
+    width: 100%;
+  }
+
+  .limpar-filtros {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .placas-container {
+    padding: 12px;
+  }
+
+  .filtros-content {
+    gap: 16px;
+  }
+
+  .placa-card {
+    margin-bottom: 16px;
+  }
+}

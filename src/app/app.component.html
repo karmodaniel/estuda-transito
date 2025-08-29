@@ -1,0 +1,99 @@
+<nz-layout class="app-layout">
+  <!-- Sidebar -->
+  <nz-sider
+    nzCollapsible
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+    class="app-sider"
+  >
+    <div class="sider-header">
+      <div class="logo" [class.collapsed]="isCollapsed">
+        <span nz-icon nzType="car" nzTheme="fill" class="logo-icon"></span>
+        <span class="logo-text" *ngIf="!isCollapsed">Quiz Placas</span>
+      </div>
+    </div>
+
+    <!-- Navegação simplificada -->
+    <div class="sidebar-nav">
+      <div
+        class="nav-item"
+        [class.active]="selectedMenuKey === 'placas'"
+        (click)="navigateTo('placas')"
+      >
+        <span nz-icon nzType="book" nzTheme="outline"></span>
+        <span *ngIf="!isCollapsed">Estudo</span>
+      </div>
+
+      <div
+        class="nav-item"
+        [class.active]="selectedMenuKey === 'quiz'"
+        (click)="navigateTo('quiz')"
+      >
+        <span nz-icon nzType="question-circle" nzTheme="outline"></span>
+        <span *ngIf="!isCollapsed">Quiz</span>
+      </div>
+    </div>
+
+    <!-- Footer da sidebar -->
+    <div class="sider-footer" *ngIf="!isCollapsed">
+      <div class="theme-toggle">
+        <button
+          nz-button
+          nzType="text"
+          nzSize="small"
+          (click)="toggleTheme()"
+          [nzTooltipTitle]="getThemeTooltip()"
+          nz-tooltip
+          nzPlacement="right"
+          class="theme-btn"
+        >
+          <span nz-icon [nzType]="getThemeIcon()" nzTheme="outline"></span>
+        </button>
+      </div>
+    </div>
+  </nz-sider>
+
+  <!-- Layout principal -->
+  <nz-layout class="main-layout">
+    <!-- Header -->
+    <nz-header class="app-header">
+      <div class="header-content">
+        <div class="header-left">
+          <button
+            nz-button
+            nzType="text"
+            nzSize="large"
+            (click)="isCollapsed = !isCollapsed"
+            class="collapse-btn"
+          >
+            <span nz-icon nzType="menu" nzTheme="outline"></span>
+          </button>
+
+          <h1 class="page-title">{{ getPageTitle() }}</h1>
+        </div>
+
+        <div class="header-right">
+          <button
+            nz-button
+            nzType="text"
+            nzSize="large"
+            (click)="toggleTheme()"
+            [nzTooltipTitle]="getThemeTooltip()"
+            nz-tooltip
+            nzPlacement="bottom"
+            class="theme-btn-header"
+          >
+            <span nz-icon [nzType]="getThemeIcon()" nzTheme="outline"></span>
+          </button>
+        </div>
+      </div>
+    </nz-header>
+
+    <!-- Conteúdo principal -->
+    <nz-content class="app-content">
+      <div class="content-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

@@ -1,0 +1,52 @@
+<div class="placas-list-container">
+  <nz-card [nzTitle]="'Total de Placas: ' + placas.length">
+    <!-- Loading -->
+    <div *ngIf="loading" class="loading-container">
+      <nz-spin nzSize="large">
+        <span class="loading-text">Carregando placas...</span>
+      </nz-spin>
+    </div>
+
+    <!-- Lista de placas -->
+    <div *ngIf="!loading" class="placas-grid">
+      <nz-card
+        *ngFor="let placa of placas"
+        class="placa-card"
+        [nzTitle]="placa.codigo + ' - ' + placa.nome"
+      >
+        <div class="placa-content">
+          <!-- Imagem da placa -->
+          <div class="placa-imagem">
+            <img
+              [src]="placa.imagem_url"
+              [alt]="placa.nome"
+              class="placa-img-medium"
+            />
+          </div>
+
+          <!-- Informações da placa -->
+          <div class="placa-info">
+            <p class="placa-descricao">
+              {{ placa.descricao }}
+            </p>
+
+            <div class="placa-categoria">
+              <nz-tag [nzColor]="getCategoriaColor(placa.categoria)">
+                {{ getNomeCategoria(placa.categoria) }}
+              </nz-tag>
+            </div>
+          </div>
+        </div>
+      </nz-card>
+    </div>
+
+    <!-- Mensagem quando não há resultados -->
+    <div *ngIf="!loading && placas.length === 0" class="no-results">
+      <nz-empty
+        nzNotFoundImage="simple"
+        [nzNotFoundContent]="'Nenhuma placa encontrada.'"
+      >
+      </nz-empty>
+    </div>
+  </nz-card>
+</div>
