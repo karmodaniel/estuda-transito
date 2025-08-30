@@ -1,10 +1,18 @@
-import { Routes } from '@angular/router';
-import { PlacasStudyComponent } from './components/placas-study/placas-study.component';
-import { QuizComponent } from './components/quiz/quiz.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/placas', pathMatch: 'full' },
-  { path: 'placas', component: PlacasStudyComponent },
-  { path: 'quiz', component: QuizComponent },
-  { path: '**', redirectTo: '/placas' },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./estuda-transito/estuda-transito.module').then(
+        (m) => m.EstudaTransitoModule
+      ),
+  },
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}

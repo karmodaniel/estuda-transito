@@ -1,9 +1,9 @@
 <div [ngClass]="getCardClass()" (click)="onPlacaClick()">
   <div class="placa-content">
     <!-- Imagem da placa -->
-    <div *ngIf="visualizacao.mostrarImagem" class="placa-imagem">
+    <div class="placa-imagem">
       <img
-        [src]="placa.imagem_url"
+        [src]="placa.imagem_url || placa.imagem_arquivo"
         [alt]="placa.nome"
         (error)="onImageError($event)"
         [ngClass]="getImagemClass()"
@@ -12,22 +12,19 @@
 
     <!-- Informações da placa -->
     <div class="placa-info">
-      <h3 *ngIf="visualizacao.mostrarNome" class="placa-nome">
-        {{
-          visualizacao.mostrarCodigo
-            ? placa.codigo + " - " + placa.nome
-            : placa.nome
-        }}
-      </h3>
+      <h3 class="placa-nome">{{ placa.codigo }} - {{ placa.nome }}</h3>
 
-      <p *ngIf="visualizacao.mostrarDescricao" class="placa-descricao">
+      <p class="placa-descricao">
         {{ placa.descricao }}
       </p>
 
-      <div *ngIf="visualizacao.mostrarCategoria" class="placa-categoria">
-        <nz-tag [nzColor]="getCategoriaColor(placa.categoria)">
+      <div class="placa-categoria">
+        <span
+          class="categoria-tag"
+          [style.background-color]="getCategoriaColor(placa.categoria)"
+        >
           {{ getNomeCategoria(placa.categoria) }}
-        </nz-tag>
+        </span>
       </div>
     </div>
   </div>

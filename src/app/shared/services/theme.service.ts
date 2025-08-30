@@ -7,8 +7,8 @@ export type Theme = 'light' | 'dark';
   providedIn: 'root',
 })
 export class ThemeService {
-  private readonly THEME_KEY = 'quiz-placas-theme';
-  private themeSubject = new BehaviorSubject<Theme>('light');
+  private readonly THEME_KEY = 'estuda-transito-theme';
+  private readonly themeSubject = new BehaviorSubject<Theme>('light');
 
   public theme$: Observable<Theme> = this.themeSubject.asObservable();
 

@@ -1,0 +1,231 @@
+.estudo-page {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 32px;
+
+  h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+}
+
+.controles-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.filtros-section {
+  display: flex;
+  gap: 24px;
+  align-items: end;
+  padding: 24px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+
+  .filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
+
+    label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    select,
+    input {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+
+      &:focus {
+        outline: none;
+        border-color: #1890ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+      }
+    }
+  }
+
+  .btn-limpar {
+    padding: 8px 16px;
+    background: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background: #ff7875;
+    }
+  }
+}
+
+.visualizacao-section {
+  display: flex;
+  gap: 8px;
+
+  .btn-visualizacao {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #f0f0f0;
+    color: #666;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+
+    &:hover {
+      background: #e6f7ff;
+      border-color: #1890ff;
+      color: #1890ff;
+    }
+
+    &.active {
+      background: #1890ff;
+      border-color: #1890ff;
+      color: white;
+    }
+  }
+}
+
+.estatisticas-section {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 32px;
+  justify-content: center;
+
+  .estatistica-item {
+    text-align: center;
+    padding: 16px 24px;
+    background: #1890ff;
+    color: white;
+    border-radius: 8px;
+    min-width: 120px;
+
+    .estatistica-valor {
+      display: block;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .estatistica-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+  }
+}
+
+.placas-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+
+  &.modo-lista {
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    app-placa-card {
+      ::ng-deep .placa-card {
+        flex-direction: row;
+        align-items: center;
+        padding: 16px;
+
+        .placa-imagem {
+          width: 80px;
+          height: 80px;
+          margin-right: 16px;
+        }
+
+        .placa-info {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+.sem-resultados {
+  text-align: center;
+  padding: 48px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #ddd;
+
+  p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 16px;
+  }
+
+  button {
+    padding: 12px 24px;
+    background: #1890ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background: #40a9ff;
+    }
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .estudo-page {
+    padding: 16px;
+  }
+
+  .controles-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtros-section {
+    flex-direction: column;
+    align-items: stretch;
+
+    .filtro-grupo {
+      min-width: auto;
+    }
+  }
+
+  .estatisticas-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .placas-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

@@ -1,0 +1,57 @@
+<nz-sider
+  nzCollapsible
+  [nzCollapsed]="isCollapsed"
+  [nzTrigger]="null"
+  class="app-sider"
+  (nzCollapsedChange)="onCollapsedChange($event)"
+>
+  <!-- Header da sidebar -->
+  <div class="sider-header">
+    <div class="logo" [class.collapsed]="isCollapsed">
+      <span
+        nz-icon
+        [nzType]="SIDEBAR_HEADER.icon"
+        nzTheme="outline"
+        class="logo-icon"
+        [nz-tooltip]="!isCollapsed ? null : SIDEBAR_HEADER.tooltip"
+        nzTooltipPlacement="right"
+      ></span>
+      <span class="logo-text" *ngIf="!isCollapsed">{{
+        SIDEBAR_HEADER.title
+      }}</span>
+    </div>
+  </div>
+
+  <!-- Navegação -->
+  <div class="sidebar-nav">
+    <div
+      class="nav-item"
+      *ngFor="let item of menuItems"
+      [class.active]="selectedMenuKey === item.key"
+      (click)="onNavigate(item)"
+      [nz-tooltip]="!isCollapsed ? null : item.tooltip"
+      nzTooltipPlacement="right"
+    >
+      <span nz-icon [nzType]="item.icon" nzTheme="outline"></span>
+      <span *ngIf="!isCollapsed">{{ item.title }}</span>
+    </div>
+  </div>
+
+  <!-- Footer da sidebar -->
+  <div class="sider-footer" *ngIf="!isCollapsed">
+    <div class="theme-toggle">
+      <button
+        nz-button
+        nzType="text"
+        nzSize="small"
+        (click)="onThemeToggle()"
+        [nzTooltipTitle]="themeTooltip"
+        nz-tooltip
+        nzPlacement="right"
+        class="theme-btn"
+      >
+        <span nz-icon [nzType]="themeIcon" nzTheme="outline"></span>
+      </button>
+    </div>
+  </div>
+</nz-sider>

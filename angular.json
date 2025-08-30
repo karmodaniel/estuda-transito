@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "quiz-placas": {
+    "estuda-transito": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,9 +20,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/quiz-placas",
+            "outputPath": "dist/estuda-transito",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": ["src/favicon.ico", "src/assets"],
@@ -60,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "quiz-placas:build:production"
+              "buildTarget": "estuda-transito:build:production"
             },
             "development": {
-              "buildTarget": "quiz-placas:build:development"
+              "buildTarget": "estuda-transito:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,17 +72,36 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "quiz-placas:build"
+            "buildTarget": "estuda-transito:extract-i18n"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "less",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/theme.less"],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "estuda-transito:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "estuda-transito:build:production"
+            }
           }
         }
       }

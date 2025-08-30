@@ -1,0 +1,251 @@
+.quiz-page {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+
+  .loading-text {
+    margin-top: 16px;
+    color: #666;
+  }
+}
+
+.quiz-card {
+  margin-bottom: 24px;
+}
+
+.quiz-inicial {
+  .quiz-header {
+    text-align: center;
+    margin-bottom: 32px;
+
+    .quiz-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+  }
+
+  .quiz-info {
+    margin-bottom: 32px;
+  }
+
+  .quiz-actions {
+    text-align: center;
+  }
+}
+
+.quiz-ativo {
+  .progress-section {
+    margin-bottom: 24px;
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #666;
+
+      .questao-atual {
+        font-weight: 600;
+      }
+
+      .pontuacao {
+        color: #1890ff;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .questao-section {
+    .questao-header {
+      text-align: center;
+      margin-bottom: 24px;
+
+      h2 {
+        font-size: 1.5rem;
+        color: #333;
+      }
+    }
+
+    .placa-imagem {
+      text-align: center;
+      margin-bottom: 24px;
+
+      .placa-img {
+        max-width: 100%;
+        max-height: 200px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .opcoes-resposta {
+      margin-bottom: 24px;
+
+      .opcao-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px;
+        margin-bottom: 12px;
+        border: 2px solid #f0f0f0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover:not(.respondida) {
+          border-color: #1890ff;
+          background: #f6ffed;
+        }
+
+        &.selecionada {
+          border-color: #1890ff;
+          background: #e6f7ff;
+        }
+
+        &.correta {
+          border-color: #52c41a;
+          background: #f6ffed;
+        }
+
+        &.incorreta {
+          border-color: #ff4d4f;
+          background: #fff2f0;
+        }
+
+        .opcao-radio {
+          flex-shrink: 0;
+        }
+
+        .opcao-texto {
+          flex: 1;
+          font-size: 16px;
+          color: #333;
+        }
+
+        .opcao-status {
+          flex-shrink: 0;
+
+          .status-icon {
+            font-size: 20px;
+
+            &.correto {
+              color: #52c41a;
+            }
+
+            &.incorreto {
+              color: #ff4d4f;
+            }
+          }
+        }
+      }
+    }
+
+    .feedback-resposta {
+      margin-bottom: 24px;
+    }
+
+    .navegacao-questoes {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+  }
+}
+
+.quiz-resultado {
+  .resultado-header {
+    text-align: center;
+    margin-bottom: 32px;
+
+    .resultado-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+  }
+
+  .resultado-pontuacao {
+    text-align: center;
+    margin-bottom: 32px;
+
+    .pontuacao-numerica {
+      margin-bottom: 16px;
+
+      .pontos {
+        font-size: 4rem;
+        font-weight: bold;
+        color: #1890ff;
+      }
+
+      .total {
+        font-size: 2rem;
+        color: #666;
+      }
+    }
+
+    .pontuacao-percentual {
+      font-size: 1.5rem;
+      color: #52c41a;
+      font-weight: 600;
+    }
+  }
+
+  .resultado-mensagem {
+    margin-bottom: 32px;
+  }
+
+  .resultado-acoes {
+    text-align: center;
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .quiz-page {
+    padding: 16px;
+  }
+
+  .quiz-inicial .quiz-header h1 {
+    font-size: 2rem;
+  }
+
+  .quiz-ativo .questao-section .navegacao-questoes {
+    flex-direction: column;
+  }
+
+  .quiz-resultado .resultado-header h1 {
+    font-size: 2rem;
+  }
+
+  .quiz-resultado .resultado-pontuacao .pontuacao-numerica .pontos {
+    font-size: 3rem;
+  }
+}

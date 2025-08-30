@@ -1,0 +1,20 @@
+<div class="sider-header">
+  <div class="logo" [class.collapsed]="isCollapsed">
+    <span nz-icon nzType="car" nzTheme="fill" class="logo-icon"></span>
+    <span class="logo-text" *ngIf="!isCollapsed">Estuda Trânsito</span>
+  </div>
+</div>
+
+<!-- Navegação simplificada -->
+<div class="sidebar-nav">
+  <div
+    *ngFor="let item of menuItems"
+    class="nav-item"
+    [class.active]="selectedMenuKey === item.key"
+    [class.collapsed]="isCollapsed"
+    (click)="onMenuClick(item.key)"
+  >
+    <span nz-icon [nzType]="item.icon" nzTheme="outline"></span>
+    <span *ngIf="!isCollapsed">{{ item.title }}</span>
+  </div>
+</div>

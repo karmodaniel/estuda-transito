@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import { Placa, PlacaVisualizacao } from '../../interfaces/placa.interface';
-import { UtilitiesService } from '../../services/utilities.service';
+import { Placa } from '@domain/model/placa';
+import { UtilitiesService } from '@shared/services/utilities.service';
 
 @Component({
   selector: 'app-placa-card',
@@ -13,16 +13,18 @@ import { UtilitiesService } from '../../services/utilities.service';
 })
 export class PlacaCardComponent {
   @Input() placa!: Placa;
-  @Input() visualizacao!: PlacaVisualizacao;
+  @Input() visualizacao?: any;
   @Input() tamanhoImagem: 'small' | 'medium' | 'large' = 'medium';
   @Input() modoVisualizacao: 'grid' | 'lista' | 'cards' = 'grid';
 
   @Output() placaClick = new EventEmitter<Placa>();
+  @Output() cardClick = new EventEmitter<Placa>();
 
   constructor(private utilitiesService: UtilitiesService) {}
 
   onPlacaClick(): void {
     this.placaClick.emit(this.placa);
+    this.cardClick.emit(this.placa);
   }
 
   onImageError(event: any): void {

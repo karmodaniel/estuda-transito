@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { ThemeService, Theme } from './shared/services/theme.service';
+import { filter } from 'rxjs/operators';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { Theme, ThemeService } from './shared/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +19,11 @@ import { ThemeService, Theme } from './shared/services/theme.service';
     CommonModule,
     RouterModule,
     NzLayoutModule,
+    NzMenuModule,
     NzButtonModule,
     NzIconModule,
     NzToolTipModule,
+    SidebarComponent,
   ],
 })
 export class AppComponent implements OnInit {
@@ -28,7 +31,10 @@ export class AppComponent implements OnInit {
   selectedMenuKey = 'placas';
   currentTheme: Theme = 'light';
 
-  constructor(private router: Router, private themeService: ThemeService) {}
+  constructor(
+    private readonly router: Router,
+    private readonly themeService: ThemeService
+  ) {}
 
   ngOnInit(): void {
     // Atualizar menu selecionado baseado na rota atual

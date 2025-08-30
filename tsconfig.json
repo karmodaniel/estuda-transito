@@ -14,16 +14,23 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
-    "isolatedModules": true
+    "lib": ["ES2022", "dom"],
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@estuda-transito/*": ["src/app/estuda-transito/*"],
+      "@domain/*": ["src/app/estuda-transito/domain/*"],
+      "@infrastructure/*": ["src/app/estuda-transito/infrastructure/*"],
+      "@abstraction/*": ["src/app/estuda-transito/abstraction/*"],
+      "@presentation/*": ["src/app/estuda-transito/presentation/*"],
+      "@mock/*": ["src/app/estuda-transito/mock/*"],
+      "@environment/*": ["src/environments/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

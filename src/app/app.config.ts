@@ -1,35 +1,31 @@
-import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
-import {
-  AppstoreOutline,
-  ArrowRightOutline,
-  BarsOutline,
-  BookOutline,
-  CheckCircleOutline,
-  CheckOutline,
-  ClearOutline,
-  CloseCircleOutline,
-  CreditCardOutline,
-  HomeOutline,
-  LeftOutline,
-  MenuOutline,
-  MoonOutline,
-  PlayCircleOutline,
-  QuestionCircleOutline,
-  ReloadOutline,
-  RightOutline,
-  SearchOutline,
-  SettingOutline,
-  StarOutline,
-  SunOutline,
-  TrophyOutline,
-} from '@ant-design/icons-angular/icons';
-import { NZ_ICONS } from 'ng-zorro-antd/icon';
-
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app-routing.module';
 import { ThemeService } from './shared/services/theme.service';
+import { NZ_ICONS } from 'ng-zorro-antd/icon';
+import {
+  MenuOutline,
+  SunOutline,
+  MoonOutline,
+  HomeOutline,
+  BookOutline,
+  QuestionCircleOutline,
+  PlayCircleOutline,
+  CheckOutline,
+  LeftOutline,
+  RightOutline,
+  ReloadOutline,
+  TrophyOutline,
+  StarOutline,
+  CheckCircleOutline,
+  CloseCircleOutline,
+  AppstoreOutline,
+  BarsOutline,
+  ClearOutline,
+  CarFill,
+} from '@ant-design/icons-angular/icons';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -40,28 +36,25 @@ export const appConfig: ApplicationConfig = {
     {
       provide: NZ_ICONS,
       useValue: [
-        AppstoreOutline,
-        ArrowRightOutline,
-        BarsOutline,
-        BookOutline,
-        CheckCircleOutline,
-        CheckOutline,
-        ClearOutline,
-        CloseCircleOutline,
-        CreditCardOutline,
-        HomeOutline,
-        LeftOutline,
         MenuOutline,
-        MoonOutline,
-        PlayCircleOutline,
-        QuestionCircleOutline,
-        ReloadOutline,
-        RightOutline,
-        SearchOutline,
-        SettingOutline,
-        StarOutline,
         SunOutline,
+        MoonOutline,
+        HomeOutline,
+        BookOutline,
+        QuestionCircleOutline,
+        PlayCircleOutline,
+        CheckOutline,
+        LeftOutline,
+        RightOutline,
+        ReloadOutline,
         TrophyOutline,
+        StarOutline,
+        CheckCircleOutline,
+        CloseCircleOutline,
+        AppstoreOutline,
+        BarsOutline,
+        ClearOutline,
+        CarFill,
       ],
     },
   ],
