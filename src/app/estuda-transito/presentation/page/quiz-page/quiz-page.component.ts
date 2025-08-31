@@ -1,24 +1,21 @@
 import { Component, OnInit, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzRadioModule } from 'ng-zorro-antd/radio';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzProgressModule } from 'ng-zorro-antd/progress';
-import { NzResultModule } from 'ng-zorro-antd/result';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { QuizFacadeService } from '../../../abstraction/quiz-facade.service';
+import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 import { Placa } from '../../../domain/model/placa';
+import { PlacaFacadeService } from '../../../abstraction/placa-facade.service';
 
 interface Questao {
   placa: Placa;
   opcoes: string[];
   respostaCorreta: string;
-  respostaSelecionada?: string;
-  respondida: boolean;
-  acertou: boolean;
+}
+
+interface ResultadoQuiz {
+  totalQuestoes: number;
+  acertos: number;
+  erros: number;
+  percentualAcertos: number;
 }
 
 @Component({
@@ -26,141 +23,158 @@ interface Questao {
   templateUrl: './quiz-page.component.html',
   styleUrls: ['./quiz-page.component.less'],
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    NzCardModule,
-    NzIconModule,
-    NzRadioModule,
-    NzButtonModule,
-    NzSpinModule,
-    NzProgressModule,
-    NzResultModule,
-    NzToolTipModule,
-  ],
+  imports: [CommonModule],
 })
 export class QuizPageComponent implements OnInit {
-  private readonly quizFacadeService = inject(QuizFacadeService);
+  private readonly router = inject(Router);
+  private readonly placaFacadeService = inject(PlacaFacadeService);
 
-  // Signals para estado do componente
-  readonly loading = signal<boolean>(false);
-  readonly quizIniciado = signal<boolean>(false);
-  readonly quizFinalizado = signal<boolean>(false);
+  // Estados do componente
+  readonly sidebarCollapsed = signal(false);
   readonly questoes = signal<Questao[]>([]);
-  readonly questaoAtual = signal<number>(0);
-  readonly pontuacao = signal<number>(0);
-  readonly configQuiz = signal({
-    categoriaSelecionada: '',
-    numOpcoes: 4,
-    modoAleatorio: true,
-  });
+  readonly questaoAtualIndex = signal(0);
+  readonly respostaSelecionada = signal<string | null>(null);
+  readonly quizFinalizado = signal(false);
+  readonly resultadoQuiz = signal<ResultadoQuiz | null>(null);
+  readonly loading = signal(false);
 
-  // Computed para valores derivados
-  readonly totalQuestoes = computed(() => this.questoes().length);
-  readonly progresso = computed(() =>
-    this.questaoAtual() > 0
-      ? (this.questaoAtual() / this.totalQuestoes()) * 100
-      : 0
+  // Computed properties
+  readonly questaoAtual = computed(
+    () => this.questoes()[this.questaoAtualIndex()]
   );
 
   ngOnInit(): void {
-    this.carregarConfiguracoes();
+    this.inicializarQuiz();
   }
 
-  private carregarConfiguracoes(): void {
-    // Aqui você pode carregar configurações salvas ou padrões
-    this.configQuiz.set({
-      categoriaSelecionada: '',
-      numOpcoes: 4,
-      modoAleatorio: true,
+  private async inicializarQuiz(): Promise<void> {
+    this.loading.set(true);
+
+    try {
+      // Buscar todas as placas do serviço
+      const placas = await firstValueFrom(
+        this.placaFacadeService.carregarPlacas()
+      );
+
+      if (placas && placas.length > 0) {
+        // Criar 10 questões aleatórias a partir das placas reais
+        const questoesAleatorias = this.gerarQuestoesAleatorias(placas, 10);
+        this.questoes.set(questoesAleatorias);
+      }
+
+      this.questaoAtualIndex.set(0);
+      this.respostaSelecionada.set(null);
+      this.quizFinalizado.set(false);
+      this.resultadoQuiz.set(null);
+    } catch (error) {
+      console.error('Erro ao carregar placas:', error);
+    } finally {
+      this.loading.set(false);
+    }
+  }
+
+  private gerarQuestoesAleatorias(
+    placas: Placa[],
+    quantidade: number
+  ): Questao[] {
+    // Embaralhar as placas
+    const placasEmbaralhadas = this.embaralharArray([...placas]);
+
+    // Pegar apenas a quantidade necessária
+    const placasSelecionadas = placasEmbaralhadas.slice(0, quantidade);
+
+    // Gerar opções para cada placa
+    return placasSelecionadas.map((placa) => {
+      const opcoes = this.gerarOpcoesAleatorias(placa, placas);
+      return {
+        placa,
+        opcoes,
+        respostaCorreta: placa.obterNome(),
+      };
     });
   }
 
-  iniciarQuiz(): void {
-    this.loading.set(true);
+  private gerarOpcoesAleatorias(
+    placaCorreta: Placa,
+    todasPlacas: Placa[]
+  ): string[] {
+    // Pegar nomes de outras placas para opções incorretas
+    const nomesOutrasPlacas = todasPlacas
+      .filter((placa) => placa.obterNome() !== placaCorreta.obterNome())
+      .map((placa) => placa.obterNome());
 
-    // Gerar questões baseado na configuração
-    this.gerarQuestoes();
+    // Embaralhar e pegar 3 opções incorretas
+    const opcoesIncorretas = this.embaralharArray([...nomesOutrasPlacas]).slice(
+      0,
+      3
+    );
 
-    this.quizIniciado.set(true);
-    this.questaoAtual.set(0);
-    this.pontuacao.set(0);
-    this.loading.set(false);
+    // Adicionar a resposta correta e embaralhar tudo
+    const opcoesFinais = [...opcoesIncorretas, placaCorreta.obterNome()];
+    return this.embaralharArray(opcoesFinais);
   }
 
-  private gerarQuestoes(): void {
-    // Aqui você implementaria a lógica para gerar questões
-    // Por enquanto, vamos criar questões de exemplo
-    const questoesExemplo: Questao[] = [
-      {
-        placa: new Placa({
-          codigo: 'A-1',
-          nome: 'Placa de Advertência',
-          descricao: 'Adverte sobre perigo à frente',
-          categoria: 2, // Advertência
-          nome_imagem: 'A-1.jpg',
-          imagem_arquivo: '/assets/placas/A-1.jpg',
-          imagem_url: '/assets/placas/A-1.jpg',
-        }),
-        opcoes: ['Advertência', 'Regulamentação', 'Serviços Auxiliares'],
-        respostaCorreta: 'Advertência',
-        respondida: false,
-        acertou: false,
-      },
-    ];
-
-    this.questoes.set(questoesExemplo);
+  private embaralharArray<T>(array: T[]): T[] {
+    const novoArray = [...array];
+    for (let i = novoArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [novoArray[i], novoArray[j]] = [novoArray[j], novoArray[i]];
+    }
+    return novoArray;
   }
 
-  selecionarResposta(questao: Questao, opcao: string): void {
-    if (questao.respondida) return;
+  toggleSidebar(): void {
+    this.sidebarCollapsed.update((collapsed) => !collapsed);
+  }
 
-    questao.respostaSelecionada = opcao;
-    questao.respondida = true;
-    questao.acertou = opcao === questao.respostaCorreta;
+  voltar(): void {
+    this.router.navigate(['/estuda-transito']);
+  }
 
-    if (questao.acertou) {
-      this.pontuacao.update((pontos) => pontos + 1);
+  selecionarResposta(opcao: string): void {
+    if (!this.respostaSelecionada()) {
+      this.respostaSelecionada.set(opcao);
     }
   }
 
   proximaQuestao(): void {
-    if (this.questaoAtual() < this.totalQuestoes() - 1) {
-      this.questaoAtual.update((atual) => atual + 1);
+    if (this.questaoAtualIndex() < this.questoes().length - 1) {
+      this.questaoAtualIndex.update((index) => index + 1);
+      this.respostaSelecionada.set(null);
     } else {
       this.finalizarQuiz();
     }
   }
 
-  questaoAnterior(): void {
-    if (this.questaoAtual() > 0) {
-      this.questaoAtual.update((atual) => atual - 1);
-    }
-  }
-
   private finalizarQuiz(): void {
+    const acertos = this.questoes().reduce((total, questao, index) => {
+      // Simular resposta correta para questões não respondidas
+      const resposta =
+        index === this.questaoAtualIndex()
+          ? this.respostaSelecionada()
+          : questao.respostaCorreta;
+      return total + (resposta === questao.respostaCorreta ? 1 : 0);
+    }, 0);
+
+    const totalQuestoes = this.questoes().length;
+    const erros = totalQuestoes - acertos;
+    const percentualAcertos = (acertos / totalQuestoes) * 100;
+
+    this.resultadoQuiz.set({
+      totalQuestoes,
+      acertos,
+      erros,
+      percentualAcertos,
+    });
+
     this.quizFinalizado.set(true);
-    this.quizIniciado.set(false);
   }
 
-  reiniciarQuiz(): void {
-    this.quizIniciado.set(false);
-    this.quizFinalizado.set(false);
-    this.questaoAtual.set(0);
-    this.pontuacao.set(0);
-    this.questoes.set([]);
+  recomecarQuiz(): void {
+    this.inicializarQuiz();
   }
 
-  getQuestaoAtual(): Questao | undefined {
-    return this.questoes()[this.questaoAtual()];
-  }
-
-  getProgresso(): number {
-    return this.progresso();
-  }
-
-  onImageError(event: Event): void {
-    const img = event.target as HTMLImageElement;
-    img.src = '/assets/placas/placeholder.jpg'; // Imagem padrão
+  obterLetraOpcao(index: number): string {
+    return String.fromCharCode(65 + index); // A, B, C, D...
   }
 }

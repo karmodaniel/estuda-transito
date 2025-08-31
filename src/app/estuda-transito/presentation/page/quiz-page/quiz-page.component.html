@@ -1,257 +1,94 @@
 <div class="quiz-page">
-  <!-- Loading -->
-  <div *ngIf="loading()" class="loading-container">
-    <nz-spin nzSize="large">
-      <span class="loading-text">Carregando quiz...</span>
-    </nz-spin>
-  </div>
-
-  <!-- Tela inicial -->
-  <div
-    *ngIf="!loading() && !quizIniciado() && !quizFinalizado()"
-    class="quiz-inicial"
-  >
-    <nz-card class="quiz-card">
-      <div class="quiz-header">
-        <div class="quiz-icon">🎯</div>
-        <h1>Estuda Trânsito</h1>
-        <p>Teste seus conhecimentos sobre placas de trânsito brasileiras!</p>
-      </div>
-
-      <div class="quiz-info">
-        <h3>Informações do Quiz</h3>
-        <div class="info-item">
-          <strong>Categoria:</strong>
-          {{ configQuiz().categoriaSelecionada || "Todas as categorias" }}
-        </div>
-        <div class="info-item">
-          <strong>Número de Opções:</strong> {{ configQuiz().numOpcoes }} opções
-          por questão
-        </div>
-        <div class="info-item">
-          <strong>Modo:</strong>
-          {{ configQuiz().modoAleatorio ? "Aleatório" : "Sequencial" }}
-        </div>
-      </div>
-
-      <div class="quiz-actions">
-        <button
-          nz-button
-          nzType="primary"
-          nzSize="large"
-          (click)="iniciarQuiz()"
-        >
-          <span nz-icon nzType="play-circle" nzTheme="outline"></span>
-          Iniciar Quiz
-        </button>
-      </div>
-    </nz-card>
-  </div>
-
-  <!-- Quiz em andamento -->
-  <div
-    *ngIf="quizIniciado() && !quizFinalizado() && getQuestaoAtual()"
-    class="quiz-ativo"
-  >
-    <nz-card class="quiz-card">
-      <!-- Progresso -->
-      <div class="progress-section">
-        <div class="progress-info">
-          <span class="questao-atual">
-            Questão {{ questaoAtual() + 1 }} de {{ totalQuestoes() }}
-          </span>
-          <span class="pontuacao">Pontuação: {{ pontuacao() }}</span>
-        </div>
-        <nz-progress
-          [nzPercent]="getProgresso()"
-          [nzShowInfo]="false"
-          nzStrokeColor="#1890ff"
-        ></nz-progress>
-      </div>
-
-      <!-- Questão -->
-      <div class="questao-section">
-        <div class="questao-header">
-          <h2>Qual é o nome desta placa de trânsito?</h2>
-        </div>
-
-        <!-- Imagem da placa -->
-        <div class="placa-imagem">
-          <img
-            [src]="getQuestaoAtual()!.placa.imagem_url"
-            [alt]="getQuestaoAtual()!.placa.nome"
-            (error)="onImageError($event)"
-            class="placa-img"
-          />
-        </div>
-
-        <!-- Opções de resposta -->
-        <div class="opcoes-resposta">
-          <div
-            *ngFor="let opcao of getQuestaoAtual()!.opcoes; let i = index"
-            class="opcao-item"
-            [class.selecionada]="
-              getQuestaoAtual()!.respostaSelecionada === opcao
-            "
-            [class.correta]="
-              getQuestaoAtual()!.respondida &&
-              opcao === getQuestaoAtual()!.respostaCorreta
-            "
-            [class.incorreta]="
-              getQuestaoAtual()!.respondida &&
-              getQuestaoAtual()!.respostaSelecionada === opcao &&
-              opcao !== getQuestaoAtual()!.respostaCorreta
-            "
-            (click)="selecionarResposta(getQuestaoAtual()!, opcao)"
-          >
-            <div class="opcao-radio">
-              <input
-                type="radio"
-                [name]="'questao-' + questaoAtual()"
-                [value]="opcao"
-                [disabled]="getQuestaoAtual()!.respondida"
-                [checked]="getQuestaoAtual()!.respostaSelecionada === opcao"
-                (change)="selecionarResposta(getQuestaoAtual()!, opcao)"
-              />
-            </div>
-            <div class="opcao-texto">
-              {{ opcao }}
-            </div>
-            <div class="opcao-status" *ngIf="getQuestaoAtual()!.respondida">
-              <span
-                *ngIf="opcao === getQuestaoAtual()!.respostaCorreta"
-                nz-icon
-                nzType="check-circle"
-                nzTheme="twotone"
-                nzTwotoneColor="#52c41a"
-                class="status-icon correto"
-              ></span>
-              <span
-                *ngIf="
-                  getQuestaoAtual()!.respostaSelecionada === opcao &&
-                  opcao !== getQuestaoAtual()!.respostaCorreta
-                "
-                nz-icon
-                nzType="close-circle"
-                nzTheme="twotone"
-                nzTwotoneColor="#ff4d4f"
-                class="status-icon incorreto"
-              ></span>
-            </div>
+  <div class="quiz-container">
+    <!-- Container Principal -->
+    <main class="main-content">
+      <div class="quiz-area">
+        <!-- Card da Pergunta -->
+        <div class="question-card">
+          <div class="placa-image">
+            <img
+              [src]="questaoAtual().placa.obterImagemUrl()"
+              [alt]="questaoAtual().placa.obterNome()"
+              class="placa-img"
+            />
           </div>
+          <h2 class="question-text">Qual é o significado desta placa?</h2>
         </div>
 
-        <!-- Feedback da resposta -->
-        <div *ngIf="getQuestaoAtual()!.respondida" class="feedback-resposta">
-          <div
-            class="feedback-alert"
-            [class.success]="getQuestaoAtual()!.acertou"
-            [class.error]="!getQuestaoAtual()!.acertou"
-          >
-            <div class="feedback-message">
-              {{
-                getQuestaoAtual()!.acertou
-                  ? "Parabéns! Resposta correta!"
-                  : "Ops! Resposta incorreta."
-              }}
-            </div>
-            <div class="feedback-description">
-              Resposta correta: {{ getQuestaoAtual()!.respostaCorreta }}
-            </div>
-          </div>
-        </div>
-
-        <!-- Navegação -->
-        <div class="navegacao-questoes">
+        <!-- Opções de Resposta -->
+        <div class="options-container">
+          @for (opcao of questaoAtual()?.opcoes; track opcao; let i = $index) {
           <button
-            nz-button
-            nzType="default"
-            (click)="questaoAnterior()"
-            [disabled]="questaoAtual() === 0"
+            class="option-button"
+            [class.correct]="
+              respostaSelecionada() && opcao === questaoAtual()?.respostaCorreta
+            "
+            [class.incorrect]="
+              respostaSelecionada() &&
+              opcao !== questaoAtual()?.respostaCorreta &&
+              opcao === respostaSelecionada()
+            "
+            [class.disabled]="respostaSelecionada()"
+            [disabled]="respostaSelecionada()"
+            (click)="selecionarResposta(opcao)"
           >
-            <span nz-icon nzType="left"></span>
-            Anterior
+            <span class="option-letter">{{ obterLetraOpcao(i) }}</span>
+            <span class="option-text">{{ opcao }}</span>
+            @if (respostaSelecionada()) { @if (opcao ===
+            questaoAtual()?.respostaCorreta) {
+            <span class="option-icon correct">✔️</span>
+            } @else if (opcao === respostaSelecionada() && opcao !==
+            questaoAtual()?.respostaCorreta) {
+            <span class="option-icon incorrect">❌</span>
+            } }
           </button>
+          }
+        </div>
 
-          <button
-            nz-button
-            nzType="primary"
-            (click)="proximaQuestao()"
-            [disabled]="!getQuestaoAtual()!.respondida"
-          >
-            <span *ngIf="questaoAtual() < totalQuestoes() - 1; else finalizar">
-              Próxima
-              <span nz-icon nzType="right"></span>
+        <!-- Feedback Pós-Resposta -->
+        @if (respostaSelecionada()) {
+        <div class="feedback-container">
+          @if (respostaSelecionada() === questaoAtual()?.respostaCorreta) {
+          <div class="feedback correct">
+            <span class="feedback-icon">✔️</span>
+            <span class="feedback-text">Correto!</span>
+          </div>
+          } @else {
+          <div class="feedback incorrect">
+            <span class="feedback-icon">❌</span>
+            <span class="feedback-text">
+              Incorreto – a correta era: {{ questaoAtual()?.respostaCorreta }}
             </span>
-            <ng-template #finalizar>
-              Finalizar Quiz
-              <span nz-icon nzType="check"></span>
-            </ng-template>
+          </div>
+          }
+        </div>
+        }
+
+        <!-- Botão Próximo -->
+        @if (respostaSelecionada()) {
+        <div class="next-button-container">
+          <button class="btn-proximo" (click)="proximaQuestao()">
+            <span class="btn-text">Próximo</span>
+            <span class="btn-icon">→</span>
           </button>
         </div>
-      </div>
-    </nz-card>
-  </div>
+        }
 
-  <!-- Resultado final -->
-  <div *ngIf="!loading() && quizFinalizado()" class="quiz-resultado">
-    <nz-card class="quiz-card">
-      <div class="resultado-header">
-        <div class="resultado-icon">
-          <span
-            *ngIf="pontuacao() >= totalQuestoes() * 0.7"
-            nz-icon
-            nzType="trophy"
-            nzTheme="twotone"
-            nzTwotoneColor="#faad14"
-          ></span>
-          <span
-            *ngIf="pontuacao() < totalQuestoes() * 0.7"
-            nz-icon
-            nzType="star"
-            nzTheme="twotone"
-            nzTwotoneColor="#1890ff"
-          ></span>
-        </div>
-        <h1>Quiz Finalizado!</h1>
-        <p>Sua pontuação final</p>
-      </div>
-
-      <div class="resultado-pontuacao">
-        <div class="pontuacao-numerica">
-          <span class="pontos">{{ pontuacao() }}</span>
-          <span class="total">/ {{ totalQuestoes() }}</span>
-        </div>
-        <div class="pontuacao-percentual">
-          {{ ((pontuacao() / totalQuestoes()) * 100).toFixed(0) }}%
+        <!-- Progresso -->
+        <div class="progress-container">
+          <div class="progress-text">
+            Questão {{ questaoAtualIndex() + 1 }} de {{ questoes().length }}
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              [style.width.%]="
+                ((questaoAtualIndex() + 1) / questoes().length) * 100
+              "
+            ></div>
+          </div>
         </div>
       </div>
-
-      <div class="resultado-mensagem">
-        <div
-          class="resultado-alert"
-          [class.success]="pontuacao() >= totalQuestoes() * 0.7"
-          [class.warning]="pontuacao() < totalQuestoes() * 0.7"
-        >
-          {{
-            pontuacao() >= totalQuestoes() * 0.7
-              ? "Excelente! Você tem um bom conhecimento sobre placas de trânsito!"
-              : "Continue estudando! Você pode melhorar!"
-          }}
-        </div>
-      </div>
-
-      <div class="resultado-acoes">
-        <button
-          nz-button
-          nzType="primary"
-          nzSize="large"
-          (click)="reiniciarQuiz()"
-        >
-          <span nz-icon nzType="reload"></span>
-          Jogar Novamente
-        </button>
-      </div>
-    </nz-card>
+    </main>
   </div>
 </div>

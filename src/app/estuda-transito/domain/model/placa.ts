@@ -36,7 +36,7 @@ export class Placa implements IPlaca {
   }
 
   obterImagemUrl(): string {
-    return this.imagem_url || this.imagem_arquivo;
+    return this.imagem_arquivo;
   }
 
   pertenceCategoria(categoria: number): boolean {
