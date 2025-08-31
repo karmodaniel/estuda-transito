@@ -102,10 +102,10 @@ export class QuizStoreService {
     this.placasFiltradasSignal.set(placas);
   }
 
-  filtrarPlacas(categoria?: string, termoPesquisa?: string): void {
+  filtrarPlacas(categoria?: number, termoPesquisa?: string): void {
     let placasFiltradas = this.placasAtuais;
 
-    if (categoria) {
+    if (categoria !== undefined) {
       placasFiltradas = placasFiltradas.filter((p) =>
         p.pertenceCategoria(categoria)
       );

@@ -1,90 +1,179 @@
 <div class="estudo-page">
+  <!-- Header Fixo -->
   <header class="page-header">
-    <h1>Estudar Placas de Trânsito</h1>
-    <p>Aprenda sobre as principais placas de trânsito brasileiras</p>
-  </header>
+    <h1>Placas de Trânsito</h1>
 
-  <div class="controles-section">
-    <div class="filtros-section">
-      <div class="filtro-grupo">
-        <label for="categoria">Categoria:</label>
-        <select
-          id="categoria"
-          [value]="categoriaSelecionada()"
-          (change)="onCategoriaChange($event)"
-        >
-          <option value="">Todas as categorias</option>
-          @for (categoria of categorias(); track categoria.codigo) {
-          <option [value]="categoria.codigo">
-            {{ categoria.nome }}
-          </option>
-          }
-        </select>
-      </div>
-
-      <div class="filtro-grupo">
-        <label for="busca">Buscar:</label>
+    <!-- Barra de Busca Centralizada -->
+    <div class="search-container">
+      <div class="search-input-wrapper">
         <input
-          id="busca"
           type="text"
           [value]="termoBusca()"
           (input)="onTermoBuscaChange($event)"
-          placeholder="Digite para buscar placas..."
+          placeholder="Buscar por nome, código ou descrição"
+          class="search-input"
         />
+        <span class="search-icon">🔍</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <!-- Área de Filtros (Lateral em Desktop) -->
+    <aside class="filters-sidebar">
+      <div class="filters-accordion" [class.mobile-open]="mobileFiltersOpen()">
+        <!-- Filtro por Categoria -->
+        <div class="accordion-panel">
+          <div class="accordion-header" (click)="toggleAccordion('categoria')">
+            <span class="accordion-title">Categoria da Placa</span>
+            <span
+              class="accordion-icon"
+              [class.expanded]="accordionStates().categoria"
+            >
+              ▼
+            </span>
+          </div>
+          <div
+            class="accordion-content"
+            [class.expanded]="accordionStates().categoria"
+          >
+            <div class="checkbox-list">
+              <label class="checkbox-item">
+                <input
+                  type="checkbox"
+                  [checked]="categoriaSelecionada() === null"
+                  (change)="onCategoriaChange(null)"
+                />
+                <span class="checkbox-label">Todas as categorias</span>
+              </label>
+              @for (categoria of categorias(); track categoria.codigo) {
+              <label class="checkbox-item">
+                <input
+                  type="checkbox"
+                  [checked]="categoriaSelecionada() === categoria.codigo"
+                  (change)="onCategoriaChange(categoria.codigo)"
+                />
+                <span class="checkbox-label">{{ categoria.nome }}</span>
+              </label>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Filtro de Campos Omitidos -->
+        <div class="accordion-panel">
+          <div class="accordion-header" (click)="toggleAccordion('campos')">
+            <span class="accordion-title">Omitir informações</span>
+            <span
+              class="accordion-icon"
+              [class.expanded]="accordionStates().campos"
+            >
+              ▼
+            </span>
+          </div>
+          <div
+            class="accordion-content"
+            [class.expanded]="accordionStates().campos"
+          >
+            <div class="checkbox-list">
+              <label class="checkbox-item">
+                <input
+                  type="checkbox"
+                  [checked]="filtrosExibicao().mostrarNome"
+                  (change)="onFiltroExibicaoChange('mostrarNome')"
+                />
+                <span class="checkbox-label">Nome da Placa</span>
+              </label>
+              <label class="checkbox-item">
+                <input
+                  type="checkbox"
+                  [checked]="filtrosExibicao().mostrarCodigo"
+                  (change)="onFiltroExibicaoChange('mostrarCodigo')"
+                />
+                <span class="checkbox-label">Código</span>
+              </label>
+              <label class="checkbox-item">
+                <input
+                  type="checkbox"
+                  [checked]="filtrosExibicao().mostrarDescricao"
+                  (change)="onFiltroExibicaoChange('mostrarDescricao')"
+                />
+                <span class="checkbox-label">Descrição</span>
+              </label>
+              <label class="checkbox-item">
+                <input
+                  type="checkbox"
+                  [checked]="filtrosExibicao().mostrarCategoria"
+                  (change)="onFiltroExibicaoChange('mostrarCategoria')"
+                />
+                <span class="checkbox-label">Categoria</span>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <button class="btn-limpar" (click)="limparFiltros()">
-        Limpar Filtros
+      <!-- Botão para mobile -->
+      <button class="mobile-filters-toggle" (click)="toggleMobileFilters()">
+        <span>Filtros</span>
+        <span class="toggle-icon" [class.expanded]="mobileFiltersOpen()"
+          >▼</span
+        >
       </button>
-    </div>
+    </aside>
 
-    <div class="visualizacao-section">
-      <button
-        class="btn-visualizacao"
-        [class.active]="modoVisualizacao() === 'grid'"
-        (click)="modoVisualizacao.set('grid')"
-      >
-        <span nz-icon nzType="appstore" nzTheme="outline"></span>
-        Grid
-      </button>
-      <button
-        class="btn-visualizacao"
-        [class.active]="modoVisualizacao() === 'lista'"
-        (click)="modoVisualizacao.set('lista')"
-      >
-        <span nz-icon nzType="bars" nzTheme="outline"></span>
-        Lista
-      </button>
-    </div>
-  </div>
+    <!-- Área de Conteúdo Principal -->
+    <main class="content-main">
+      <!-- Informações da Listagem -->
+      <div class="listing-info">
+        <div class="results-counter">
+          Exibindo {{ totalPlacasFiltradas() }} de {{ totalPlacas() }} placas
+        </div>
 
-  <div class="estatisticas-section">
-    <div class="estatistica-item">
-      <span class="estatistica-valor">{{ totalPlacas() }}</span>
-      <span class="estatistica-label">Total de Placas</span>
-    </div>
-    <div class="estatistica-item">
-      <span class="estatistica-valor">{{ placasFiltradas().length }}</span>
-      <span class="estatistica-label">Placas Encontradas</span>
-    </div>
-  </div>
+        <div class="view-toggle">
+          <button
+            class="view-button"
+            [class.active]="modoVisualizacao() === 'lista'"
+            (click)="modoVisualizacao.set('lista')"
+            title="Modo Lista"
+          >
+            <span class="view-icon">☰</span>
+          </button>
+          <button
+            class="view-button"
+            [class.active]="modoVisualizacao() === 'grid'"
+            (click)="modoVisualizacao.set('grid')"
+            title="Modo Grid"
+          >
+            <span class="view-icon">⊞</span>
+          </button>
+        </div>
+      </div>
 
-  <div
-    class="placas-container"
-    [class.modo-lista]="modoVisualizacao() === 'lista'"
-  >
-    @for (placa of placasFiltradas(); track placa.codigo) {
-    <app-placa-card
-      [placa]="placa"
-      (cardClick)="onPlacaClick(placa)"
-    ></app-placa-card>
-    }
-  </div>
+      <!-- Área de Resultados -->
+      <div class="results-container">
+        <div
+          class="placas-container"
+          [class.modo-lista]="modoVisualizacao() === 'lista'"
+          [class.modo-grid]="modoVisualizacao() === 'grid'"
+        >
+          @for (placa of placasFiltradas(); track placa.codigo) {
+          <app-placa-card
+            [placa]="placa"
+            [filtrosExibicao]="filtrosExibicao()"
+            [modoVisualizacao]="modoVisualizacao()"
+            (cardClick)="onPlacaClick(placa)"
+          ></app-placa-card>
+          }
+        </div>
 
-  @if (placasFiltradas().length === 0) {
-  <div class="sem-resultados">
-    <p>Nenhuma placa encontrada com os filtros aplicados.</p>
-    <button (click)="limparFiltros()">Limpar Filtros</button>
+        @if (placasFiltradas().length === 0) {
+        <div class="sem-resultados">
+          <p>Nenhuma placa encontrada com os filtros aplicados.</p>
+          <button (click)="limparFiltros()">Limpar Filtros</button>
+        </div>
+        }
+      </div>
+    </main>
   </div>
-  }
 </div>

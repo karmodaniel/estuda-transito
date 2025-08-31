@@ -4,7 +4,7 @@ export class PlacaResponse {
   codigo: string;
   nome: string;
   descricao: string;
-  categoria: string;
+  categoria: number;
   nome_imagem: string;
   imagem_arquivo: string;
   imagem_url?: string;
@@ -16,7 +16,7 @@ export class PlacaResponse {
     this.codigo = dados.codigo || '';
     this.nome = dados.nome || '';
     this.descricao = dados.descricao || '';
-    this.categoria = dados.categoria || '';
+    this.categoria = dados.categoria || 0;
     this.nome_imagem = dados.nome_imagem || '';
     this.imagem_arquivo = dados.imagem_arquivo || '';
     this.imagem_url = dados.imagem_url;

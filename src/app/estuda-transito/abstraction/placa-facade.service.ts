@@ -97,7 +97,7 @@ export class PlacaFacadeService {
   }
 
   // Métodos para filtros e busca
-  filtrarPlacas(categoria?: string, termoPesquisa?: string): void {
+  filtrarPlacas(categoria?: number, termoPesquisa?: string): void {
     this.quizStoreService.filtrarPlacas(categoria, termoPesquisa);
   }
 
@@ -130,12 +130,17 @@ export class PlacaFacadeService {
   }
 
   // Métodos utilitários
-  obterNomeCategoria(codigo: string): string {
-    return CATEGORIAS_PLACAS[codigo as CategoriaPlacaEnum] || 'Desconhecida';
+  obterNomeCategoria(codigo: number): string {
+    const categorias: { [key: number]: string } = {
+      1: 'Regulamentação',
+      2: 'Advertência',
+      3: 'Serviços Auxiliares',
+    };
+    return categorias[codigo] || 'Desconhecida';
   }
 
-  obterCategoriasDisponiveis(): string[] {
-    return Object.values(CategoriaPlacaEnum);
+  obterCategoriasDisponiveis(): number[] {
+    return [1, 2, 3];
   }
 
   // Métodos para estatísticas

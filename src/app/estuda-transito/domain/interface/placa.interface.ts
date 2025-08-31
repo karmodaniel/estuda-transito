@@ -2,14 +2,14 @@ export interface IPlaca {
   codigo: string;
   nome: string;
   descricao: string;
-  categoria: string;
+  categoria: number;
   nome_imagem: string;
   imagem_arquivo: string;
   imagem_url?: string;
 }
 
 export interface IPlacaFiltros {
-  categoria?: string;
+  categoria?: number;
   termoPesquisa?: string;
 }
 

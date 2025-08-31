@@ -2,7 +2,7 @@
   {
     "codigo": "R-1",
     "nome": "Parada obrigatória PARE",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor que deve parar seu veículo antes de entrar ou cruzar a via/pista.",
     "imagem_arquivo": "assets/placas/R-1.jpg",
     "nome_imagem": "R-1.jpg"
@@ -10,7 +10,7 @@
   {
     "codigo": "R-2",
     "nome": "Dê a preferência",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor a obrigatoriedade de dar preferência de passagem ao veículo que circula na via em que vai entrar ou cruzar, devendo para tanto reduzir a velocidade ou parar seu veículo, se\nnecessário.",
     "imagem_arquivo": "assets/placas/R-2.jpg",
     "nome_imagem": "R-2.jpg"
@@ -18,7 +18,7 @@
   {
     "codigo": "R-3",
     "nome": "Sentido proibido",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor a proibição de seguir em frente ou entrar na pista ou área restringida pelo sinal.",
     "imagem_arquivo": "assets/placas/R-3.jpg",
     "nome_imagem": "R-3.jpg"
@@ -26,7 +26,7 @@
   {
     "codigo": "R-4a",
     "nome": "Proibido virar à esquerda",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo a proibição de realizar o movimento de conversão à esquerda.",
     "imagem_arquivo": "assets/placas/R-4a.jpg",
     "nome_imagem": "R-4a.jpg"
@@ -34,7 +34,7 @@
   {
     "codigo": "R-4b",
     "nome": "Proibido virar à direita",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo a proibição de realizar o movimento de conversão à direita.",
     "imagem_arquivo": "assets/placas/R-4b.jpg",
     "nome_imagem": "R-4b.jpg"
@@ -42,7 +42,7 @@
   {
     "codigo": "R-5a",
     "nome": "Proibido retornar à esquerda",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo a proibição de retornar à esquerda.",
     "imagem_arquivo": "assets/placas/R-5a.jpg",
     "nome_imagem": "R-5a.jpg"
@@ -50,7 +50,7 @@
   {
     "codigo": "R-5b",
     "nome": "Proibido retornar à direita",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor de veículo a proibição de retornar à direita.",
     "imagem_arquivo": "assets/placas/R-5b.jpg",
     "nome_imagem": "R-5b.jpg"
@@ -58,7 +58,7 @@
   {
     "codigo": "R-6a",
     "nome": "Proibido estacionar",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor que é proibido o estacionamento de veículos.",
     "imagem_arquivo": "assets/placas/R-6a.jpg",
     "nome_imagem": "R-6a.jpg"
@@ -66,7 +66,7 @@
   {
     "codigo": "R-6b",
     "nome": "Estacionamento regulamentado",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor que é permitido o estacionamento de veículos.",
     "imagem_arquivo": "assets/placas/R-6b.jpg",
     "nome_imagem": "R-6b.jpg"
@@ -74,7 +74,7 @@
   {
     "codigo": "R-6c",
     "nome": "Proibido parar e estacionar",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor que é proibido a parada e estacionamento de veículos.",
     "imagem_arquivo": "assets/placas/R-6c.jpg",
     "nome_imagem": "R-6c.jpg"
@@ -82,7 +82,7 @@
   {
     "codigo": "R-7",
     "nome": "Proibido ultrapassar",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo que é proibido realizar o movimento de ultrapassagem no trecho regulamentado, pela(s) faixa(s) destinada(s) ao sentido oposto de circulação.",
     "imagem_arquivo": "assets/placas/R-7.jpg",
     "nome_imagem": "R-7.jpg"
@@ -90,7 +90,7 @@
   {
     "codigo": "R-8a",
     "nome": "Proibido mudar de faixa ou pista de trânsito da esquerda para direita",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo que, no trecho objeto da regulamentação, é proibida a mudança de faixa ou pista da esquerda para direita.",
     "imagem_arquivo": "assets/placas/R-8a.jpg",
     "nome_imagem": "R-8a.jpg"
@@ -98,7 +98,7 @@
   {
     "codigo": "R-8b",
     "nome": "Proibido mudar de faixa ou pista de trânsito da direita para esquerda",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo que, no trecho objeto da regulamentação, é proibida a mudança de faixa ou pista da direita para esquerda.",
     "imagem_arquivo": "assets/placas/R-8b.jpg",
     "nome_imagem": "R-8b.jpg"
@@ -106,7 +106,7 @@
   {
     "codigo": "R-9",
     "nome": "Proibido trânsito de caminhões",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor de caminhão a proibição de transitar a partir do ponto sinalizado, na área, via/pista ou faixa.",
     "imagem_arquivo": "assets/placas/R-9.jpg",
     "nome_imagem": "R-9.jpg"
@@ -114,7 +114,7 @@
   {
     "codigo": "R-10",
     "nome": "Proibido trânsito de veículos automotores",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor de qualquer veículo automotor a proibição de transitar, a partir do ponto sinalizado, na área ou via/pista ou faixa.",
     "imagem_arquivo": "assets/placas/R-10.jpg",
     "nome_imagem": "R-10.jpg"
@@ -122,7 +122,7 @@
   {
     "codigo": "R-11",
     "nome": "Proibido trânsito de veículos de tração animal",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor de veículo de tração animal a proibição de transitar a partir do ponto sinalizado, na área ou via/pista ou faixa.",
     "imagem_arquivo": "assets/placas/R-11.jpg",
     "nome_imagem": "R-11.jpg"
@@ -130,7 +130,7 @@
   {
     "codigo": "R-12",
     "nome": "Proibido trânsito de bicicletas",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao ciclista a proibição de transitar de bicicleta a partir do ponto sinalizado na área, via/pista ou faixa.",
     "imagem_arquivo": "assets/placas/R-12.jpg",
     "nome_imagem": "R-12.jpg"
@@ -138,7 +138,7 @@
   {
     "codigo": "R-13",
     "nome": "Proibido trânsito de tratores e máquinas de obras",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor de tratores e máquinas de obras a proibição de transitar a partir do ponto sinalizado, na área ou via/pista.",
     "imagem_arquivo": "assets/placas/R-13.jpg",
     "nome_imagem": "R-13.jpg"
@@ -146,7 +146,7 @@
   {
     "codigo": "R-14",
     "nome": "Peso bruto total máximo permitido",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Regulamenta o peso bruto total máximo permitido a um veículo para transitar na área, via/pista ou faixa.",
     "imagem_arquivo": "assets/placas/R-14.jpg",
     "nome_imagem": "R-14.jpg"
@@ -154,7 +154,7 @@
   {
     "codigo": "R-15",
     "nome": "Altura máxima permitida",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Regulamenta a altura máxima permitida a um veículo para transitar na área, via/pista ou faixa.",
     "imagem_arquivo": "assets/placas/R-15.jpg",
     "nome_imagem": "R-15.jpg"
@@ -162,7 +162,7 @@
   {
     "codigo": "R-16",
     "nome": "Largura máxima permitida",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Regulamenta a largura máxima permitida do veículo para transitar na área ou via/pista.",
     "imagem_arquivo": "assets/placas/R-16.jpg",
     "nome_imagem": "R-16.jpg"
@@ -170,7 +170,7 @@
   {
     "codigo": "R-17",
     "nome": "Peso máximo permitido por eixo",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Regulamenta o peso máximo permitido por eixo do veículo para transitar na área, via/pista ou faixa.",
     "imagem_arquivo": "assets/placas/R-17.jpg",
     "nome_imagem": "R-17.jpg"
@@ -178,7 +178,7 @@
   {
     "codigo": "R-18",
     "nome": "Comprimento máximo permitido",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Regulamenta o comprimento máximo permitido do veículo ou combinação de veículo para transitar na área, via/pista.",
     "imagem_arquivo": "assets/placas/R-18.jpg",
     "nome_imagem": "R-18.jpg"
@@ -186,7 +186,7 @@
   {
     "codigo": "R-19",
     "nome": "Velocidade máxima permitida",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Regulamenta o limite máximo de velocidade em que o veículo pode circular na pista ou faixa, válido a partir do ponto onde o sinal é colocado.",
     "imagem_arquivo": "assets/placas/R-19.jpg",
     "nome_imagem": "R-19.jpg"
@@ -194,7 +194,7 @@
   {
     "codigo": "R-20",
     "nome": "Proibido acionar buzina ou sinal sonoro",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo que é proibido acionar a buzina ou qualquer outro tipo de sinal sonoro, no local regulamentado.",
     "imagem_arquivo": "assets/placas/R-20.jpg",
     "nome_imagem": "R-20.jpg"
@@ -202,7 +202,7 @@
   {
     "codigo": "R-21",
     "nome": "Alfândega",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo a presença de uma repartição alfandegária, onde a parada é obrigatória.",
     "imagem_arquivo": "assets/placas/R-21.jpg",
     "nome_imagem": "R-21.jpg"
@@ -210,7 +210,7 @@
   {
     "codigo": "R-22",
     "nome": "Uso obrigatório de corrente",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor de veículos que a partir do ponto sinalizado é obrigatório o uso de correntes atreladas às rodas do veículo. Essa obrigação se refere ao par de rodas motrizes.",
     "imagem_arquivo": "assets/placas/R-22.jpg",
     "nome_imagem": "R-22.jpg"
@@ -218,7 +218,7 @@
   {
     "codigo": "R-23",
     "nome": "Conserve-se à direita",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo a obrigatoriedade de manter-se à direita da pista , deixando livre a(s) faixa(s) da esquerda.",
     "imagem_arquivo": "assets/placas/R-23.jpg",
     "nome_imagem": "R-23.jpg"
@@ -226,7 +226,7 @@
   {
     "codigo": "R-24a",
     "nome": "Sentido de circulação de via/pista",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor que a via/pista sinalizada tem sentido único de circulação.",
     "imagem_arquivo": "assets/placas/R-24a.jpg",
     "nome_imagem": "R-24a.jpg"
@@ -234,7 +234,7 @@
   {
     "codigo": "R-24b",
     "nome": "Passagem obrigatória",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo que existe um obstáculo e que a passagem é obrigatoriamente feita à direita/esquerda do mesmo.",
     "imagem_arquivo": "assets/placas/R-24b.jpg",
     "nome_imagem": "R-24b.jpg"
@@ -242,7 +242,7 @@
   {
     "codigo": "R-25a",
     "nome": "Vire à esquerda",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veiculo a obrigatoriedade de realizar o movimento indicado.",
     "imagem_arquivo": "assets/placas/R-25a.jpg",
     "nome_imagem": "R-25a.jpg"
@@ -250,7 +250,7 @@
   {
     "codigo": "R-25b",
     "nome": "Vire à direita",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veiculo a obrigatoriedade de realizar o movimento indicado.",
     "imagem_arquivo": "assets/placas/R-25b.jpg",
     "nome_imagem": "R-25b.jpg"
@@ -258,7 +258,7 @@
   {
     "codigo": "R-25c",
     "nome": "Siga em frente ou à esquerda",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo que os movimentos de circulação permitidos são somente os indicados.",
     "imagem_arquivo": "assets/placas/R-25c.jpg",
     "nome_imagem": "R-25c.jpg"
@@ -266,7 +266,7 @@
   {
     "codigo": "R-25d",
     "nome": "Siga em frente ou à direita",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo que os movimentos de circulação permitidos são somente os indicados.",
     "imagem_arquivo": "assets/placas/R-25d.jpg",
     "nome_imagem": "R-25d.jpg"
@@ -274,7 +274,7 @@
   {
     "codigo": "R-26",
     "nome": "Siga em frente",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo a obrigatoriedade de realizar o movimento indicado.",
     "imagem_arquivo": "assets/placas/R-26.jpg",
     "nome_imagem": "R-26.jpg"
@@ -282,7 +282,7 @@
   {
     "codigo": "R-27",
     "nome": "Ônibus, caminhões e veículos de grande porte mantenham-se à direita",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor de ônibus, caminhões e veículos de grande porte a obrigação de circular pela(s) faixa(s) da direita.",
     "imagem_arquivo": "assets/placas/R-27.jpg",
     "nome_imagem": "R-27.jpg"
@@ -290,7 +290,7 @@
   {
     "codigo": "R-28",
     "nome": "Duplo sentido de circulação",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo que a via de sentido único de circulação passa a ser de sentido duplo, após o ponto em que o sinal estiver colocado.",
     "imagem_arquivo": "assets/placas/R-28.jpg",
     "nome_imagem": "R-28.jpg"
@@ -298,7 +298,7 @@
   {
     "codigo": "R-29",
     "nome": "Proibido trânsito de pedestres",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao pedestre a proibição de transitar na via ou área com restrição.",
     "imagem_arquivo": "assets/placas/R-29.jpg",
     "nome_imagem": "R-29.jpg"
@@ -306,7 +306,7 @@
   {
     "codigo": "R-30",
     "nome": "Pedestre, ande pela esquerda",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao pedestre a obrigatoriedade de andar pelo lado esquerdo da área ou via.",
     "imagem_arquivo": "assets/placas/R-30.jpg",
     "nome_imagem": "R-30.jpg"
@@ -314,7 +314,7 @@
   {
     "codigo": "R-31",
     "nome": "Pedestre, ande pela direita",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao pedestre a obrigatoriedade de andar pelo lado direito da área ou via.",
     "imagem_arquivo": "assets/placas/R-31.jpg",
     "nome_imagem": "R-31.jpg"
@@ -322,7 +322,7 @@
   {
     "codigo": "R-32",
     "nome": "Circulação exclusiva de ônibus",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo que a área, via/pista ou faixa(s) é de circulação exclusiva de ônibus.",
     "imagem_arquivo": "assets/placas/R-32.jpg",
     "nome_imagem": "R-32.jpg"
@@ -330,7 +330,7 @@
   {
     "codigo": "R-33",
     "nome": "Sentido de circulação na rotatória",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo a obrigatoriedade do movimento no sentido anti-horário em rotatória.",
     "imagem_arquivo": "assets/placas/R-33.jpg",
     "nome_imagem": "R-33.jpg"
@@ -338,7 +338,7 @@
   {
     "codigo": "R-34",
     "nome": "Circulação exclusiva de bicicletas",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala que a área, trecho de via/pista ou faixa(s) é de circulação exclusiva de bicicletas.",
     "imagem_arquivo": "assets/placas/R-34.jpg",
     "nome_imagem": "R-34.jpg"
@@ -346,7 +346,7 @@
   {
     "codigo": "R-35a",
     "nome": "Ciclista, transite à esquerda",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao ciclista a obrigatoriedade de transitar pelo lado esquerdo da área, via/pista.",
     "imagem_arquivo": "assets/placas/R-35a.jpg",
     "nome_imagem": "R-35a.jpg"
@@ -354,7 +354,7 @@
   {
     "codigo": "R-35b",
     "nome": "Ciclista, transite à direita",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao ciclista a obrigatoriedade de transitar pelo lado direito da área, via/pista.",
     "imagem_arquivo": "assets/placas/R-35b.jpg",
     "nome_imagem": "R-35b.jpg"
@@ -362,7 +362,7 @@
   {
     "codigo": "R-36a",
     "nome": "Ciclistas à esquerda, pedestres à direita",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Regulamenta o trânsito de ciclistas à esquerda e pedestres à direita da área, via/pista.",
     "imagem_arquivo": "assets/placas/R-36a.jpg",
     "nome_imagem": "R-36a.jpg"
@@ -370,7 +370,7 @@
   {
     "codigo": "R-36b",
     "nome": "Pedestres à esquerda, ciclistas à direita",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Regulamenta o trânsito de pedestre à esquerda e ciclistas à direita da via/pista",
     "imagem_arquivo": "assets/placas/R-36b.jpg",
     "nome_imagem": "R-36b.jpg"
@@ -378,7 +378,7 @@
   {
     "codigo": "R-37",
     "nome": "Proibido trânsito de motocicletas, motonetas e ciclomotores",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor de motocicletas, motonetas e ciclomotores a proibição de transitar a partir do ponto sinalizado na área, via/pista ou faixa.",
     "imagem_arquivo": "assets/placas/R-37.jpg",
     "nome_imagem": "R-37.jpg"
@@ -386,7 +386,7 @@
   {
     "codigo": "R-38",
     "nome": "Proibido trânsito de ônibus",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor de ônibus a proibição de transitar, a partir do ponto sinalizado, na área, via/pista ou faixa.",
     "imagem_arquivo": "assets/placas/R-38.jpg",
     "nome_imagem": "R-38.jpg"
@@ -394,7 +394,7 @@
   {
     "codigo": "R-39",
     "nome": "Circulação exclusiva de caminhão",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor do veículo que a área, via/pista ou faixa é de circulação exclusiva de caminhão.",
     "imagem_arquivo": "assets/placas/R-39.jpg",
     "nome_imagem": "R-39.jpg"
@@ -402,7 +402,7 @@
   {
     "codigo": "R-40",
     "nome": "Trânsito proibido a carros de mão",
-    "categoria": "R",
+    "categoria": 1,
     "descricao": "Assinala ao condutor de carro de mão a proibição de transitar a partir do ponto sinalizado, na área, via/pista ou faixa.",
     "imagem_arquivo": "assets/placas/R-40.jpg",
     "nome_imagem": "R-40.jpg"
@@ -410,7 +410,7 @@
   {
     "codigo": "A-1a",
     "nome": "Curva acentuada à esquerda",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-1a adverte o condutor do veículo da existência,\nadiante, de uma curva acentuada à esquerda.",
     "imagem_arquivo": "assets/placas/A-1a.jpg",
     "nome_imagem": "A-1a.jpg"
@@ -418,7 +418,7 @@
   {
     "codigo": "A-1b",
     "nome": "Curva acentuada à direita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-1b adverte o condutor do veículo da existência,\nadiante, de uma curva acentuada à direita.",
     "imagem_arquivo": "assets/placas/A-1b.jpg",
     "nome_imagem": "A-1b.jpg"
@@ -426,7 +426,7 @@
   {
     "codigo": "A-2a",
     "nome": "Curva à esquerda",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-2a adverte o condutor do veículo da existência,\nadiante, de uma curva à esquerda.",
     "imagem_arquivo": "assets/placas/A-2a.jpg",
     "nome_imagem": "A-2a.jpg"
@@ -434,7 +434,7 @@
   {
     "codigo": "A-2b",
     "nome": "Curva à direita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-2a adverte o condutor do veículo da existência,\nadiante, de uma curva à direita.",
     "imagem_arquivo": "assets/placas/A-2b.jpg",
     "nome_imagem": "A-2b.jpg"
@@ -442,7 +442,7 @@
   {
     "codigo": "A-3a",
     "nome": "Pista sinuosa à esquerda",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-3a adverte o condutor do veículo da existência,\nadiante, de três ou mais curvas horizontais sucessivas, sendo a\nprimeira à esquerda.",
     "imagem_arquivo": "assets/placas/A-3a.jpg",
     "nome_imagem": "A-3a.jpg"
@@ -450,7 +450,7 @@
   {
     "codigo": "A-3b",
     "nome": "Pista sinuosa à direita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-3b adverte o condutor do veículo da existência,\nadiante, de três ou mais curvas horizontais sucessivas, sendo a\nprimeira à direita.",
     "imagem_arquivo": "assets/placas/A-3b.jpg",
     "nome_imagem": "A-3b.jpg"
@@ -458,7 +458,7 @@
   {
     "codigo": "A-4a",
     "nome": "Curva acentuada em “S” à esquerda",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-4a adverte o condutor do veículo da existência,\nadiante, de duas curvas acentuadas horizontais sucessivas\nformando “S”.",
     "imagem_arquivo": "assets/placas/A-4a.jpg",
     "nome_imagem": "A-4a.jpg"
@@ -466,7 +466,7 @@
   {
     "codigo": "A-4b",
     "nome": "Curva acentuada em “S” à direita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-4b adverte o condutor do veículo da existência,\nadiante, de duas curvas acentuadas horizontais sucessivas\nformando “S”.",
     "imagem_arquivo": "assets/placas/A-4b.jpg",
     "nome_imagem": "A-4b.jpg"
@@ -474,7 +474,7 @@
   {
     "codigo": "A-5a",
     "nome": "Curva em “S” à esquerda",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-5a adverte o condutor do veículo da existência\nadiante, de duas curvas horizontais sucessivas formando “S”",
     "imagem_arquivo": "assets/placas/A-5a.jpg",
     "nome_imagem": "A-5a.jpg"
@@ -482,7 +482,7 @@
   {
     "codigo": "A-5b",
     "nome": "Curva em “S” à direita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-5b adverte o condutor do veículo da existência\nadiante, de duas curvas horizontais sucessivas formando “S”",
     "imagem_arquivo": "assets/placas/A-5b.jpg",
     "nome_imagem": "A-5b.jpg"
@@ -490,7 +490,7 @@
   {
     "codigo": "A-6",
     "nome": "Cruzamento de vias",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-6 adverte o condutor do veículo da existência, adiante, de\num cruzamento de duas vias em nível.",
     "imagem_arquivo": "assets/placas/A-6.jpg",
     "nome_imagem": "A-6.jpg"
@@ -498,7 +498,7 @@
   {
     "codigo": "A-7a",
     "nome": "Via lateral à esquerda",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-7a adverte o condutor do veículo da existência,\nadiante, de uma via lateral à esquerda.",
     "imagem_arquivo": "assets/placas/A-7a.jpg",
     "nome_imagem": "A-7a.jpg"
@@ -506,7 +506,7 @@
   {
     "codigo": "A-7b",
     "nome": "Via lateral à direita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-7b adverte o condutor do veículo da existência,\nadiante, de uma via lateral à direita.",
     "imagem_arquivo": "assets/placas/A-7b.jpg",
     "nome_imagem": "A-7b.jpg"
@@ -514,7 +514,7 @@
   {
     "codigo": "A-8",
     "nome": "Interseção em “T”",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-8, adverte o condutor do veículo da existência, adiante de uma interseção em “T”;",
     "imagem_arquivo": "assets/placas/A-8.jpg",
     "nome_imagem": "A-8.jpg"
@@ -522,7 +522,7 @@
   {
     "codigo": "A-9",
     "nome": "Bifurcação em “Y”",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-9, adverte o condutor do veículo da existência, adiante de uma bifurcação em “Y”.",
     "imagem_arquivo": "assets/placas/A-9.jpg",
     "nome_imagem": "A-9.jpg"
@@ -530,7 +530,7 @@
   {
     "codigo": "A-10a",
     "nome": "Entroncamento oblíquo à esquerda",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-10a adverte o condutor do veículo da existência, adiante, de um entroncamento à esquerda.",
     "imagem_arquivo": "assets/placas/A-10a.jpg",
     "nome_imagem": "A-10a.jpg"
@@ -538,7 +538,7 @@
   {
     "codigo": "A-10b",
     "nome": "Entroncamento oblíquo à direita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-10b adverte o condutor do veículo da existência, adiante, de um entroncamento à direita.",
     "imagem_arquivo": "assets/placas/A-10b.jpg",
     "nome_imagem": "A-10b.jpg"
@@ -546,7 +546,7 @@
   {
     "codigo": "A-11a",
     "nome": "Junções sucessivas contrárias primeira à esquerda",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-11a adverte o condutor do veículo da existência, adiante, de junções sucessivas contrárias, estando a primeira via\nlateral à esquerda.",
     "imagem_arquivo": "assets/placas/A-11a.jpg",
     "nome_imagem": "A-11a.jpg"
@@ -554,7 +554,7 @@
   {
     "codigo": "A-11b",
     "nome": "Junções sucessivas contrárias primeira à direita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-11b adverte o condutor do veículo da existência, adiante, de junções sucessivas contrárias, estando a primeira via\nlateral à direita.",
     "imagem_arquivo": "assets/placas/A-11b.jpg",
     "nome_imagem": "A-11b.jpg"
@@ -562,7 +562,7 @@
   {
     "codigo": "A-12",
     "nome": "Interseção em círculo",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-12 adverte o condutor do veículo da existência, adiante, de uma interseção em círculo (rotatória), na qual a circulação é feita no sentido anti-horário.",
     "imagem_arquivo": "assets/placas/A-12.jpg",
     "nome_imagem": "A-12.jpg"
@@ -570,7 +570,7 @@
   {
     "codigo": "A-13a",
     "nome": "Confluência à esquerda",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-13a adverte o condutor do veículo da existência, adiante, da confluência de uma via, à esquerda.",
     "imagem_arquivo": "assets/placas/A-13a.jpg",
     "nome_imagem": "A-13a.jpg"
@@ -578,7 +578,7 @@
   {
     "codigo": "A-13b",
     "nome": "Confluência à direita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-13b adverte o condutor do veículo da existência, adiante, da confluência de uma via, à direita.",
     "imagem_arquivo": "assets/placas/A-13b.jpg",
     "nome_imagem": "A-13b.jpg"
@@ -586,7 +586,7 @@
   {
     "codigo": "A-14",
     "nome": "Semáforo à frente",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-14 adverte o condutor do veículo da existência, adiante, de uma sinalização semafórica de regulamentação.",
     "imagem_arquivo": "assets/placas/A-14.jpg",
     "nome_imagem": "A-14.jpg"
@@ -594,7 +594,7 @@
   {
     "codigo": "A-15",
     "nome": "Parada obrigatória à frente",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-15 adverte o condutor do veículo da existência, adiante, de um sinal R-1 – “Parada obrigatória”.",
     "imagem_arquivo": "assets/placas/A-15.jpg",
     "nome_imagem": "A-15.jpg"
@@ -602,7 +602,7 @@
   {
     "codigo": "A-16",
     "nome": "Bonde",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-16 adverte o condutor do veículo da existência, adiante, de cruzamento ou circulação de bondes",
     "imagem_arquivo": "assets/placas/A-16.jpg",
     "nome_imagem": "A-16.jpg"
@@ -610,7 +610,7 @@
   {
     "codigo": "A-17",
     "nome": "Pista irregular",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-17 adverte o condutor do veículo da existência, adiante, de um trecho de pista com superfície irregular.",
     "imagem_arquivo": "assets/placas/A-17.jpg",
     "nome_imagem": "A-17.jpg"
@@ -618,7 +618,7 @@
   {
     "codigo": "A-18",
     "nome": "Saliência ou lombada",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-18 adverte o condutor do veículo da existência, adiante, de saliência, lombada ou ondulação transversal sobre a superfície de rolamento.",
     "imagem_arquivo": "assets/placas/A-18.jpg",
     "nome_imagem": "A-18.jpg"
@@ -626,7 +626,7 @@
   {
     "codigo": "A-19",
     "nome": "Depressão",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-19 adverte o condutor do veículo da existência, adiante, de uma depressão na pista.",
     "imagem_arquivo": "assets/placas/A-19.jpg",
     "nome_imagem": "A-19.jpg"
@@ -634,7 +634,7 @@
   {
     "codigo": "A-20a",
     "nome": "Declive acentuado",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-20a adverte o usuário da via da existência, adiante, de um declive acentuado.",
     "imagem_arquivo": "assets/placas/A-20a.jpg",
     "nome_imagem": "A-20a.jpg"
@@ -642,7 +642,7 @@
   {
     "codigo": "A-20b",
     "nome": "Aclive acentuado",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-20b adverte o usuário da via da existência, adiante, de um aclive acentuado.",
     "imagem_arquivo": "assets/placas/A-20b.jpg",
     "nome_imagem": "A-20b.jpg"
@@ -650,7 +650,7 @@
   {
     "codigo": "A-21a",
     "nome": "Estreitamento de pista ao centro",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-21a adverte o condutor do veículo da\nexistência, adiante, de estreitamento da pista de ambos os lados.",
     "imagem_arquivo": "assets/placas/A-21a.jpg",
     "nome_imagem": "A-21a.jpg"
@@ -658,7 +658,7 @@
   {
     "codigo": "A-21b",
     "nome": "Estreitamento de pista à esquerda",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-21b adverte o condutor do veículo da\nexistência, adiante, de estreitamento da pista à esquerda.",
     "imagem_arquivo": "assets/placas/A-21b.jpg",
     "nome_imagem": "A-21b.jpg"
@@ -666,7 +666,7 @@
   {
     "codigo": "A-21c",
     "nome": "Estreitamento de pista à direita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-21b adverte o condutor do veículo da\nexistência, adiante, de estreitamento da pista à direita.",
     "imagem_arquivo": "assets/placas/A-21c.jpg",
     "nome_imagem": "A-21c.jpg"
@@ -674,7 +674,7 @@
   {
     "codigo": "A-21d",
     "nome": "Alargamento de pista à esquerda",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-21d adverte o condutor do veículo da\nexistência, adiante, de alargamento da pista no lado esquerdo.",
     "imagem_arquivo": "assets/placas/A-21d.jpg",
     "nome_imagem": "A-21d.jpg"
@@ -682,7 +682,7 @@
   {
     "codigo": "A-21e",
     "nome": "Alargamento de pista à direita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-21e adverte o condutor do veículo da\nexistência, adiante, de alargamento da pista no lado direito.",
     "imagem_arquivo": "assets/placas/A-21e.jpg",
     "nome_imagem": "A-21e.jpg"
@@ -690,7 +690,7 @@
   {
     "codigo": "A-22",
     "nome": "Ponte estreita",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-22 adverte o condutor da existência, adiante, de ponte ou viaduto com largura inferior a da via.",
     "imagem_arquivo": "assets/placas/A-22.jpg",
     "nome_imagem": "A-22.jpg"
@@ -698,7 +698,7 @@
   {
     "codigo": "A-23",
     "nome": "Ponte móvel",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-23 adverte o condutor do veículo da existência, adiante, de uma ponte móvel.",
     "imagem_arquivo": "assets/placas/A-23.jpg",
     "nome_imagem": "A-23.jpg"
@@ -706,7 +706,7 @@
   {
     "codigo": "A-24",
     "nome": "Obras",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-24 adverte o usuário da via de interferência devido à existência de obras adiante.",
     "imagem_arquivo": "assets/placas/A-24.jpg",
     "nome_imagem": "A-24.jpg"
@@ -714,7 +714,7 @@
   {
     "codigo": "A-25",
     "nome": "Mão dupla adiante",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-25 adverte o condutor do veículo da existência, adiante, de alteração do sentido único de circulação para duplo.",
     "imagem_arquivo": "assets/placas/A-25.jpg",
     "nome_imagem": "A-25.jpg"
@@ -722,7 +722,7 @@
   {
     "codigo": "A-26a",
     "nome": "Sentido único",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-26a adverte o condutor do veículo quanto ao sentido de circulação da via.",
     "imagem_arquivo": "assets/placas/A-26a.jpg",
     "nome_imagem": "A-26a.jpg"
@@ -730,7 +730,7 @@
   {
     "codigo": "A-26b",
     "nome": "Sentido duplo",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-26b adverte o condutor do veículo quanto ao sentido de circulação da via.",
     "imagem_arquivo": "assets/placas/A-26b.jpg",
     "nome_imagem": "A-26b.jpg"
@@ -738,7 +738,7 @@
   {
     "codigo": "A-27",
     "nome": "Área com desmoronamento",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-27 adverte o condutor do veículo da existência, adiante, de área sujeita a desmoronamento.",
     "imagem_arquivo": "assets/placas/A-27.jpg",
     "nome_imagem": "A-27.jpg"
@@ -746,7 +746,7 @@
   {
     "codigo": "A-28",
     "nome": "Pista escorregadia",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-28 adverte o condutor do veículo da existência, adiante, de trecho da pista que, em certas condições, pode tornar-se escorregadia.",
     "imagem_arquivo": "assets/placas/A-28.jpg",
     "nome_imagem": "A-28.jpg"
@@ -754,7 +754,7 @@
   {
     "codigo": "A-29",
     "nome": "Projeção de cascalho",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-29 adverte o condutor do veículo da existência, adiante, de trecho ao longo do qual pode ocorrer projeção de cascalho.",
     "imagem_arquivo": "assets/placas/A-29.jpg",
     "nome_imagem": "A-29.jpg"
@@ -762,7 +762,7 @@
   {
     "codigo": "A-30a",
     "nome": "Trânsito de ciclistas",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-30a adverte o condutor do veículo da existência, adiante, de trecho de pista ao longo do qual ciclistas circulam pela via ou cruzam a pista.",
     "imagem_arquivo": "assets/placas/A-30a.jpg",
     "nome_imagem": "A-30a.jpg"
@@ -770,7 +770,7 @@
   {
     "codigo": "A-30b",
     "nome": "Passagem sinalizada de ciclistas",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-30b adverte os condutores da existência, adiante, de faixa sinalizada para travessia de ciclistas.",
     "imagem_arquivo": "assets/placas/A-30b.jpg",
     "nome_imagem": "A-30b.jpg"
@@ -778,7 +778,7 @@
   {
     "codigo": "A-30c",
     "nome": "Trânsito compartilhado por ciclistas e pedestres",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-30c adverte o ciclista e o pedestre da existência, adiante, de trecho de via com trânsito compartilhado",
     "imagem_arquivo": "assets/placas/A-30c.jpg",
     "nome_imagem": "A-30c.jpg"
@@ -786,7 +786,7 @@
   {
     "codigo": "A-31",
     "nome": "Trânsito de tratores ou maquinária agrícola",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-31 adverte o condutor do veículo da existência, adiante, de local de cruzamento ou trânsito eventual de toda espécie de tratores\ne máquinas agrícolas.",
     "imagem_arquivo": "assets/placas/A-31.jpg",
     "nome_imagem": "A-31.jpg"
@@ -794,7 +794,7 @@
   {
     "codigo": "A-32a",
     "nome": "Trânsito de pedestres",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-32a adverte o condutor do veículo da existência, adiante, de trecho de via com trânsito de pedestres.",
     "imagem_arquivo": "assets/placas/A-32a.jpg",
     "nome_imagem": "A-32a.jpg"
@@ -802,7 +802,7 @@
   {
     "codigo": "A-32b",
     "nome": "Passagem sinalizada de pedestres",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-32b adverte o condutor do veículo da existência, adiante, de local sinalizado com faixa de travessia de pedestres",
     "imagem_arquivo": "assets/placas/A-32b.jpg",
     "nome_imagem": "A-32b.jpg"
@@ -810,7 +810,7 @@
   {
     "codigo": "A-33a",
     "nome": "Área escolar",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-33a adverte o condutor do veículo da existência, adiante, de trecho de via com trânsito de escolares.",
     "imagem_arquivo": "assets/placas/A-33a.jpg",
     "nome_imagem": "A-33a.jpg"
@@ -818,7 +818,7 @@
   {
     "codigo": "A-33b",
     "nome": "Passagem sinalizada de escolares",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-33b adverte o condutor do veículo da existência, adiante, de local sinalizado com faixa de travessia de pedestres com predominância de escolares.",
     "imagem_arquivo": "assets/placas/A-33b.jpg",
     "nome_imagem": "A-33b.jpg"
@@ -826,7 +826,7 @@
   {
     "codigo": "A-34",
     "nome": "Crianças",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-34 adverte o condutor da existência, adiante, de área adjacente utilizada para o lazer de crianças",
     "imagem_arquivo": "assets/placas/A-34.jpg",
     "nome_imagem": "A-34.jpg"
@@ -834,7 +834,7 @@
   {
     "codigo": "A-35",
     "nome": "Animais",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-35 adverte o condutor do veículo da possibilidade de presença, adiante, de animais na via.",
     "imagem_arquivo": "assets/placas/A-35.jpg",
     "nome_imagem": "A-35.jpg"
@@ -842,7 +842,7 @@
   {
     "codigo": "A-36",
     "nome": "Animais selvagens",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-36 adverte o condutor do veículo da possibilidade de presença, adiante, de animais selvagens na via.",
     "imagem_arquivo": "assets/placas/A-36.jpg",
     "nome_imagem": "A-36.jpg"
@@ -850,7 +850,7 @@
   {
     "codigo": "A-37",
     "nome": "Altura limitada",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-37 adverte o condutor da existência, adiante, de restrição de altura máxima do veículo, com ou sem carga.",
     "imagem_arquivo": "assets/placas/A-37.jpg",
     "nome_imagem": "A-37.jpg"
@@ -858,7 +858,7 @@
   {
     "codigo": "A-38",
     "nome": "Largura limitada",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-38 adverte o condutor da existência, adiante, de restrição de largura máxima do veiculo, com ou sem carga.",
     "imagem_arquivo": "assets/placas/A-38.jpg",
     "nome_imagem": "A-38.jpg"
@@ -866,7 +866,7 @@
   {
     "codigo": "A-39",
     "nome": "Passagem de nível sem barreira",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-39 adverte o condutor do veículo da existência, adiante, de um cruzamento com linha férrea em nível sem barreira.",
     "imagem_arquivo": "assets/placas/A-39.jpg",
     "nome_imagem": "A-39.jpg"
@@ -874,7 +874,7 @@
   {
     "codigo": "A-40",
     "nome": "Passagem de nível com barreira",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-40 adverte o condutor do veículo da existência, adiante, de um cruzamento com linha férrea em nível com barreira.",
     "imagem_arquivo": "assets/placas/A-40.jpg",
     "nome_imagem": "A-40.jpg"
@@ -882,7 +882,7 @@
   {
     "codigo": "A-41",
     "nome": "Cruz de Santo André",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-41 adverte o condutor do veículo da existência, no local de cruzamento com linha férrea em nível",
     "imagem_arquivo": "assets/placas/A-41.jpg",
     "nome_imagem": "A-41.jpg"
@@ -890,7 +890,7 @@
   {
     "codigo": "A-42a",
     "nome": "Início de pista dupla",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-42a adverte o condutor do veículo da\nexistência, adiante, de pista em que os fluxos opostos de tráfego passam a ser separados ou deixam de ser separados por um canteiro ou obstáculo",
     "imagem_arquivo": "assets/placas/A-42a.jpg",
     "nome_imagem": "A-42a.jpg"
@@ -898,7 +898,7 @@
   {
     "codigo": "A-42b",
     "nome": "Fim de pista dupla",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-42b adverte o condutor do veículo da\nexistência, adiante, de pista em que os fluxos opostos de tráfego passam a ser separados ou deixam de ser separados por um canteiro ou obstáculo",
     "imagem_arquivo": "assets/placas/A-42b.jpg",
     "nome_imagem": "A-42b.jpg"
@@ -906,7 +906,7 @@
   {
     "codigo": "A-42c",
     "nome": "Pista dividida",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-42c adverte o condutor do veículo da existência de uma via onde os fluxos de tráfego de mesmo sentido de circulação passam a ser divididos por um canteiro ou obstáculo.",
     "imagem_arquivo": "assets/placas/A-42c.jpg",
     "nome_imagem": "A-42c.jpg"
@@ -914,7 +914,7 @@
   {
     "codigo": "A-43",
     "nome": "Aeroporto",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-43 adverte o condutor do veículo da existência, adiante, de aeroporto ou aeródromo próximo à via.",
     "imagem_arquivo": "assets/placas/A-43.jpg",
     "nome_imagem": "A-43.jpg"
@@ -922,7 +922,7 @@
   {
     "codigo": "A-44",
     "nome": "Vento lateral",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-44 adverte o condutor do veículo da existência, adiante, de trecho de via ao longo do qual ocorre frequentemente vento lateral\nforte.",
     "imagem_arquivo": "assets/placas/A-44.jpg",
     "nome_imagem": "A-44.jpg"
@@ -930,7 +930,7 @@
   {
     "codigo": "A-45",
     "nome": "Rua sem saída",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-45 adverte o condutor do veículo da existência de via sem continuidade.",
     "imagem_arquivo": "assets/placas/A-45.jpg",
     "nome_imagem": "A-45.jpg"
@@ -938,7 +938,7 @@
   {
     "codigo": "A-46",
     "nome": "Peso brutal total limitado",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-46 adverte o condutor da existência, adiante, de restrição de peso bruto total máximo do veículo",
     "imagem_arquivo": "assets/placas/A-46.jpg",
     "nome_imagem": "A-46.jpg"
@@ -946,7 +946,7 @@
   {
     "codigo": "A-47",
     "nome": "Peso limitado por eixo",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-47 adverte o condutor da existência, adiante, de restrição de peso limitado por eixo do veículo.",
     "imagem_arquivo": "assets/placas/A-47.jpg",
     "nome_imagem": "A-47.jpg"
@@ -954,7 +954,7 @@
   {
     "codigo": "A-48",
     "nome": "Comprimento limitado",
-    "categoria": "Advertência",
+    "categoria": 2,
     "descricao": "O sinal A-48 adverte o condutor quanto ao comprimento máximo permitido do veículo ou combinação de veículos para transitar na via/pista.",
     "imagem_arquivo": "assets/placas/A-48.jpg",
     "nome_imagem": "A-48.jpg"
@@ -1090,7 +1090,7 @@
   {
     "codigo": "I-4",
     "nome": "Atrativo turístico",
-    "categoria": "Indicação",
+    "categoria": 4,
     "descricao": "Indicam a direção e nome do atrativo turístico.",
     "imagem_arquivo": "assets/placas/I-4.jpg",
     "nome_imagem": "I-4.jpg"
@@ -1098,7 +1098,7 @@
   {
     "codigo": "I-1",
     "nome": "Identificação de rodovia",
-    "categoria": "Indicação",
+    "categoria": 4,
     "descricao": "Identifica o estado e nome da rodovia a qual se encontra.",
     "imagem_arquivo": "assets/placas/I-1.jpg",
     "nome_imagem": "I-1.jpg"
@@ -1106,7 +1106,7 @@
   {
     "codigo": "I-2",
     "nome": "Identificação quilométrica",
-    "categoria": "Indicação",
+    "categoria": 4,
     "descricao": "Identifica o nome e a quilometragem da rodovias a qual se encontra.",
     "imagem_arquivo": "assets/placas/I-2.jpg",
     "nome_imagem": "I-2.jpg"
@@ -1114,7 +1114,7 @@
   {
     "codigo": "I-3",
     "nome": "Orientação de destino",
-    "categoria": "Indicação",
+    "categoria": 4,
     "descricao": "Indicam a direção, distância e nome de cidades e destinos específicos.",
     "imagem_arquivo": "assets/placas/I-3.jpg",
     "nome_imagem": "I-3.jpg"
@@ -1122,7 +1122,7 @@
   {
     "codigo": "I-5",
     "nome": "Pedágio",
-    "categoria": "Indicação",
+    "categoria": 4,
     "descricao": "Indicam a presença, direção e tarifas de vias com presença de pedágio.",
     "imagem_arquivo": "assets/placas/I-5.jpg",
     "nome_imagem": "I-5.jpg"

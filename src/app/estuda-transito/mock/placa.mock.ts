@@ -45,7 +45,7 @@ export const PLACAS_MOCK: PlacaResponse[] = [
     codigo: 'I-1',
     nome: 'Posto de Abastecimento',
     descricao: 'Indica localização de posto de combustível',
-    categoria: CategoriaPlacaEnum.INFORMACAO,
+    categoria: CategoriaPlacaEnum.SERVICOS_AUXILIARES,
     nome_imagem: 'I-1.jpg',
     imagem_arquivo: 'assets/placas/I-1.jpg',
     imagem_url: 'assets/placas/I-1.jpg',
@@ -57,40 +57,34 @@ export const PLACAS_MOCK: PlacaResponse[] = [
     codigo: 'S-1',
     nome: 'Faixa de Pedestres',
     descricao: 'Indica faixa de travessia de pedestres',
-    categoria: CategoriaPlacaEnum.SINALIZACAO,
+    categoria: CategoriaPlacaEnum.SERVICOS_AUXILIARES,
     nome_imagem: 'S-1.jpg',
     imagem_arquivo: 'assets/placas/S-1.jpg',
     imagem_url: 'assets/placas/S-1.jpg',
     ativa: true,
     dataCriacao: '2024-01-01T00:00:00Z',
-    dataAtualizacao: '2024-01-01T00:00:00Z',
+    dataAtualizacao: '2024-01-01T00:00:00z',
   }),
 ];
 
 export const CATEGORIAS_MOCK = [
   new CategoriaResponse({
-    codigo: CategoriaPlacaEnum.ADVERTENCIA,
+    codigo: CategoriaPlacaEnum.ADVERTENCIA.toString(),
     nome: 'Advertência',
     descricao: 'Placas que alertam sobre condições da via',
     quantidadePlacas: 48,
   }),
   new CategoriaResponse({
-    codigo: CategoriaPlacaEnum.REGULAMENTACAO,
+    codigo: CategoriaPlacaEnum.REGULAMENTACAO.toString(),
     nome: 'Regulamentação',
     descricao: 'Placas que estabelecem regras de trânsito',
     quantidadePlacas: 40,
   }),
   new CategoriaResponse({
-    codigo: CategoriaPlacaEnum.INFORMACAO,
-    nome: 'Informação',
+    codigo: CategoriaPlacaEnum.SERVICOS_AUXILIARES.toString(),
+    nome: 'Serviços Auxiliares',
     descricao: 'Placas que informam sobre serviços e locais',
     quantidadePlacas: 5,
-  }),
-  new CategoriaResponse({
-    codigo: CategoriaPlacaEnum.SINALIZACAO,
-    nome: 'Sinalização',
-    descricao: 'Placas que orientam o tráfego',
-    quantidadePlacas: 16,
   }),
 ];
 

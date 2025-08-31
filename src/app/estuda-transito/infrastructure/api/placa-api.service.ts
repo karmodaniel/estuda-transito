@@ -25,6 +25,8 @@ export class PlacaApiService {
     // Usar o arquivo JSON real
     return this.http.get<any[]>(this.placasJsonUrl).pipe(
       map((placasJson) => {
+        console.log('Placas JSON carregadas:', placasJson.length);
+
         // Converter o formato JSON para PlacaResponse
         const placas = placasJson.map(
           (placaJson) =>
@@ -42,37 +44,15 @@ export class PlacaApiService {
             })
         );
 
-        // Aplicar filtros
-        let placasFiltradas = [...placas];
+        console.log('Placas convertidas:', placas.length);
 
-        if (filtros.categoria) {
-          placasFiltradas = placasFiltradas.filter(
-            (p) => p.categoria === filtros.categoria
-          );
-        }
-
-        if (filtros.termoPesquisa) {
-          const termo = filtros.termoPesquisa.toLowerCase();
-          placasFiltradas = placasFiltradas.filter(
-            (p) =>
-              p.nome.toLowerCase().includes(termo) ||
-              p.descricao.toLowerCase().includes(termo)
-          );
-        }
-
-        // Aplicar paginação
-        const pagina = filtros.pagina || 1;
-        const limite = filtros.limite || 10;
-        const inicio = (pagina - 1) * limite;
-        const fim = inicio + limite;
-        const placasPagina = placasFiltradas.slice(inicio, fim);
-
+        // Retornar todas as placas sem filtros por padrão
         return new PlacaListaResponse({
-          placas: placasPagina,
-          total: placasFiltradas.length,
-          pagina: pagina,
-          limite: limite,
-          totalPaginas: Math.ceil(placasFiltradas.length / limite),
+          placas: placas,
+          total: placas.length,
+          pagina: 1,
+          limite: placas.length,
+          totalPaginas: 1,
         });
       })
     );
@@ -227,10 +207,9 @@ export class PlacaApiService {
 
   private getNomeCategoria(codigo: string): string {
     const categorias: { [key: string]: string } = {
-      R: 'Regulamentação',
-      A: 'Advertência',
-      I: 'Indicação',
-      S: 'Serviços',
+      '1': 'Regulamentação',
+      '2': 'Advertência',
+      '3': 'Serviços Auxiliares',
     };
     return categorias[codigo] || 'Desconhecida';
   }

@@ -4,7 +4,7 @@ export class Placa implements IPlaca {
   codigo: string;
   nome: string;
   descricao: string;
-  categoria: string;
+  categoria: number;
   nome_imagem: string;
   imagem_arquivo: string;
   imagem_url?: string;
@@ -19,7 +19,7 @@ export class Placa implements IPlaca {
     this.imagem_url = dados.imagem_url;
   }
 
-  obterCategoria(): string {
+  obterCategoria(): number {
     return this.categoria;
   }
 
@@ -39,8 +39,8 @@ export class Placa implements IPlaca {
     return this.imagem_url || this.imagem_arquivo;
   }
 
-  pertenceCategoria(categoria: string): boolean {
-    return this.categoria.toLowerCase() === categoria.toLowerCase();
+  pertenceCategoria(categoria: number): boolean {
+    return this.categoria === categoria;
   }
 
   contemTermo(termo: string): boolean {

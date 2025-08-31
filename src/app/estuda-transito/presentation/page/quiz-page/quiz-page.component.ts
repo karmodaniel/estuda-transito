@@ -93,14 +93,16 @@ export class QuizPageComponent implements OnInit {
     // Por enquanto, vamos criar questões de exemplo
     const questoesExemplo: Questao[] = [
       {
-        placa: {
+        placa: new Placa({
           codigo: 'A-1',
           nome: 'Placa de Advertência',
           descricao: 'Adverte sobre perigo à frente',
-          categoria: 'A',
+          categoria: 2, // Advertência
+          nome_imagem: 'A-1.jpg',
+          imagem_arquivo: '/assets/placas/A-1.jpg',
           imagem_url: '/assets/placas/A-1.jpg',
-        } as Placa,
-        opcoes: ['Advertência', 'Regulamentação', 'Indicação', 'Serviços'],
+        }),
+        opcoes: ['Advertência', 'Regulamentação', 'Serviços Auxiliares'],
         respostaCorreta: 'Advertência',
         respondida: false,
         acertou: false,
